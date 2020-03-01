@@ -1,24 +1,26 @@
+console.log("app.create.js successful load.")
+
 // Designate reference to collection for input fields. This SHOULD allow a new document
 // to be created for each new user entry with an auto-assigned ID in Firebase.
-const colRef  = db.collection("users");
+var colRef  = db.collection("users");
 
 // Create a js reference to allow a function on Submit button selection.
-const submitButton = document.querySelector("#submit");
+var submitButton = document.querySelector("#submit");
 
 // js references to input fields on the create page.
-const fnameField = document.querySelector("#fname");
-const lnameField = document.querySelector("#lname");
-const emailField = document.querySelector("#email");
-const pwField    = document.querySelector("#password");
+var fnameField = document.querySelector("#fname");
+var lnameField = document.querySelector("#lname");
+var emailField = document.querySelector("#email");
+var pwField    = document.querySelector("#password");
 
 // TODO: ADD VERIFICATION ALL FIELDS HAVE BEEN FILLED IN.
 submitButton.addEventListener("click", function() {
-    const fnameSave = fnameField.value;
-    const lnameSave = lnameField.value;
-    const emailSave = emailField.value;
-    const pwSave    = pwField.value;
+    var fnameSave = fnameField.value;
+    var lnameSave = lnameField.value;
+    var emailSave = emailField.value;
+    var pwSave    = pwField.value;
     console.log("Saving " + fnameSave + ", " + lnameSave + ", " + emailSave + ", " + pwSave + " to Firebase.");
-    colRef.set({
+    colRef.add({
         fname : fnameSave,
         lname : lnameSave,
         email : emailSave,

@@ -1,3 +1,5 @@
+console.log("app.js successful load.");
+
 // Firebase configuration info.
 var firebaseConfig = {
     apiKey: "AIzaSyCaIskrUlJ3Gd6FHxama8SoEZ1w7rWdVOM",
@@ -11,7 +13,7 @@ var firebaseConfig = {
   };
 
 // Initialize Firebase, set to variable "app"
-var app = firebase.initializeApp(firebaseConfig)
+var app = firebase.initializeApp(firebaseConfig);
 
 // Initialize Firestore (db) and Analytics (analy)
 var db    = firebase.firestore(app);
