@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "285793217980",
+    "firebase_url": "https://club-mgmt-test.firebaseio.com",
+    "project_id": "club-mgmt-test",
+    "storage_bucket": "club-mgmt-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285793217980:android:df5d1cf77a690d71928fb9",
+        "android_client_info": {
+          "package_name": "com.penguins.clubmanagementtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285793217980-90upkiuct86gbeq2rs1s38iqsqgucmc1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.penguins.clubmanagementtest",
+            "certificate_hash": "6bd2e751c3bf1207f8ce5704ceac96b4f70eb30f"
+          }
+        },
+        {
+          "client_id": "285793217980-n07r31k32laq90q4s7qht4o2av4ffmod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc43EhZ2YEQJXtBussCTm0zuW66EZ2FgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285793217980-n07r31k32laq90q4s7qht4o2av4ffmod.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
