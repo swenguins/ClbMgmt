@@ -4,25 +4,27 @@ description: The beta version of the Club Management Application for SWENG Group
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   
-  # Add the dependency for the Firebase Core Flutter SDK
-  firebase_core: ^0.4.0+9
-   
-  # Add the dependency for the FlutterFire plugin for Google Analytics
-  firebase_analytics: ^5.0.2
+  # Add the dependency for Flutter's provider API for state management.
+  provider: ^4.0.2
+  
+  # Add the dependency for the Firebase Core Flutter SDK.
+  firebase_core: ^0.4.4
 
-  # Add the dependencies for any other Firebase products you want to use in your app
-  # For example, to use Firebase Authentication and Cloud Firestore  
-  firebase_auth: ^0.14.0+5
-  cloud_firestore: ^0.12.9+5
-
-  # Add the dependencies for Google Sign In Services
+  # Add the dependencies to utilize Firebase products, Auth and Cloud Firestore.
+  firebase_auth: ^0.15.4
+  cloud_firestore: ^0.13.3
+  
+  # Add the dependencies for Google's Sign In Services.
   google_sign_in: ^4.1.4
+
+  # Add the dependency for the FlutterFire plugin for Google Analytics.
+  firebase_analytics: ^5.0.2
 
   rxdart: 0.20.0
 

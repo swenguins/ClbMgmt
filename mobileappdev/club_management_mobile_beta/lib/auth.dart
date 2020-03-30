@@ -30,16 +30,18 @@ class AuthService {
     final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
     
     final AuthCredential credential = GoogleAuthProvider.getCredential(
-      idToken: googleAuth.accessToken, 
+      idToken: googleAuth.idToken, 
       accessToken: googleAuth.idToken
       );
     
     
     final FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
-    assert(user.email != null);
-    assert(user.displayName != null);
-    assert(!user.isAnonymous);
-    assert(await user.getIdToken() != null);
+
+    //final FirebaseUser user = (await _auth.signInWithEmailAndPassword(credential)).user;
+    //assert(user.email != null);
+    //assert(user.displayName != null);
+    //assert(!user.isAnonymous);
+    //assert(await user.getIdToken() != null);
 
     final FirebaseUser currentUser = await _auth.currentUser();
     assert(user.uid == currentUser.uid);
