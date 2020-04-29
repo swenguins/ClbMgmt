@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--
+	Team Penguin: Noah Doyle 4/12/20
+This page is a test profile
+-->
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Profile</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+		<script src="form.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+	</head>
+	<body>
+
+		<!-- Header -->
+     
+			<header id="header">
+				<h1><a href="profile.html">Home</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="profile.html">Home Profile</a></li>
+						<li><a href="generic.html">Manage your clubs</a></li>
+						<li><a href="create.html">Create a Club</a></li>
+						<li><a href="SignIn.html" class="button special" id="signout" onclick="signOut()" onclick="window.location.href = 'signIn.html';">LogOut</a></li>
+					</ul>
+
+
+				</nav>
+			</header>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major">
+                        <img src="images/profile_placeholder.gif" alt="" />
+
+						<h2 id ="welcome"> </h2>
+						<p>The Clubs you're currently enlisted in are listed below.</p>
+					</header>
+                    <body>
+                        <!-- Table -->
+						<section>
+							<h3>Clubs</h3>
+							<h4></h4>
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+                                            <th>Next Event Date</th>
+                                             <th>Next Event Time</th>
+											<th>CheckIn</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Gold's Gym</td>
+											<td>Find upcoming workout classes</td>
+                                            <td>3/1/20</td>
+                                            <td>3:00pm</td>
+											<td><a href="#"  class="button small">CheckIn</a></td>
+										</tr>
+										<tr>
+											<td>Rowan Game Club</td>
+											<td>Rowan's own Game Club, stop by every Wednesday and Friday.</td>
+                                            <td>3/1/20</td>
+                                            <td>3:00pm</td>
+											<td><a href="#" class="button small">CheckIn</a></td>
+										</tr>
+
+									</tbody>
+									<tfoot>
+										<tr>
+                                            <td>Enter a club name to search for a new Club</td>
+                                            <td>
+
+										<input type="text" name="Club Name" id="name" value="" placeholder="Search Club Name" />
+                                            </td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+
+							<!-- This table should get populated with all of the users owned clubs, it currently has placeholder data-->
+<h3>Owned Clubs</h3>
+							<div class="table-wrapper">
+								<table>
+									<thead>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Next Event Date</th>
+										<th>Next Event Time</th>
+
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td>Gold's Gym</td>
+										<td>Find upcoming workout classes</td>
+										<td>3/1/20</td>
+										<td>3:00pm</td>
+										<td><a href="#" id="managebtn" class="button small" onclick="manageClub()">Manage</a></td>
+									</tr>
+									<tr>
+										<td>Rowan Game Club</td>
+										<td>Rowan's own Game Club, stop by every Wednesday and Friday.</td>
+										<td>3/1/20</td>
+										<td>3:00pm</td>
+										<td><button type="button"  id="managebtn" class="button small" onclick="manageClub()">Manage</button></td>
+									</tr>
+
+									</tbody>
+									<tfoot>
+									<tr>
+										<td><button type="button"  id="createbtn" class="button small" onclick="createClub()">Create Club</button></td>
+										<td>
+
+										<td><button type="button"  id="analyticsbtn" class="button small" onclick="getClubAnalytics()">Club Analytics</button></td>
+										</td>
+									</tr>
+									</tfoot>
+								</table>
+							</div>
+
+
+                    
+
+
+			</section>
+
+						<!-- This section is where the management stuff will go -->
+						<section id="manage" style="display: none;" >
+							<h3>Club Management </h3>
+
+						</section>
+
+						<!-- This section is where the analytics stuff will go or it could go in the table that gets populated with all the owned clubs.  -->
+						<section id="analytics" style="display: none;" >
+							<h3> Analytics </h3>
+
+						</section>
+
+						<!-- This section is where the Club Creation stuff will go, Ive set up a few input boxes for you already, but you may need more -->
+						<section id="create" style="display: none;" >
+							<h3> Create Club Here</h3>
+							<input type="text" name="Club Name" id="name" value="" placeholder="Club Name" />
+							<input type="text" name="Club Description" id="description" value="" placeholder="Club Description" />
+
+
+
+
+						</section>
+
+
+	</body>
+
+
+</html>
