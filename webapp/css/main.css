@@ -1,0 +1,71 @@
+
+.profile_pic img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+#profiles {
+    display: flex;
+}
+
+#button .signIn .signOut{
+    margin-top: 10px;
+}
+
+#profile_row.row {
+    padding-left: 10vw;
+}
+
+input#email {
+    margin-top: 10px;
+    padding-left: 5vw;
+}
+
+input#password {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 5vw;
+}
+
+#signUp.button {
+    margin-left: 5vw;
+}
+
+#club-create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+}
+
+#club-create-checks {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-between;
+}
+
+textarea#Description {
+    width: 50vw;
+    border-radius: 5px;
+}
+
+#footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 0 0 0;
+}
+
+div.a{
+    text-align: center;
+}
+
+input[type="checkbox"] {
+    margin-right: 0px;
+}

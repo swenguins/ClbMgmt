@@ -25,6 +25,7 @@ This page is a test profile
 		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
 		<script src="form.js"></script>
+		<link rel="stylesheet" href="css/main.css">
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -42,7 +43,7 @@ This page is a test profile
 						<li><a href="profile.html">Home Profile</a></li>
 						<li><a href="generic.html">Manage your clubs</a></li>
 						<li><a href="create.html">Create a Club</a></li>
-						<li><a href="SignIn.html" class="button special" id="signout" onclick="signOut()" onclick="window.location.href = 'signIn.html';">LogOut</a></li>
+						<li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
 					</ul>
 
 
@@ -137,10 +138,8 @@ This page is a test profile
 									<tfoot>
 									<tr>
 										<td><button type="button"  id="createbtn" class="button small" onclick="createClub()">Create Club</button></td>
-										<td>
 
 										<td><button type="button"  id="analyticsbtn" class="button small" onclick="getClubAnalytics()">Club Analytics</button></td>
-										</td>
 									</tr>
 									</tfoot>
 								</table>
@@ -151,7 +150,6 @@ This page is a test profile
 
 
 			</section>
-
 						<!-- This section is where the management stuff will go -->
 						<section id="manage" style="display: none;" >
 							<h3>Club Management </h3>
@@ -175,7 +173,7 @@ This page is a test profile
 
 						</section>
 
-
+		</section>
 	</body>
 
 
