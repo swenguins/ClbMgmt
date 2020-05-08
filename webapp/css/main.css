@@ -28,10 +28,6 @@ input#password {
     padding-left: 5vw;
 }
 
-#signUp.button {
-    margin-left: 5vw;
-}
-
 #club-create {
     display: flex;
     flex-direction: column;
@@ -87,6 +83,27 @@ textarea#Description {
 
 div.a{
     text-align: center;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 87vh;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 2vh;
+}
+
+#login-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#login-buttons button {
+    margin: 5px;
 }
 
 input[type="checkbox"] {

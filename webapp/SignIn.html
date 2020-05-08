@@ -35,66 +35,41 @@ This is where the user would log into their club to manage it.
 		<script src="form.js" ></script>
 	</head>
 	<body>
-
-
-
-
 		<!-- Header & nav buttons-->
-			<header id="header">
-				<h1><a href="index.html">ClubInc</a></h1>
-				<nav id="nav">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<!--<li><a href="create.html">Create</a></li>
-						<li><a href="Manage.html">Join</a></li>
-                        <li><a href="SignIn.html">Login</a></li>-->
-					</ul>
-				</nav>
-			</header>
-<!-- Banner -->
+		<header id="header">
+			<h1><a href="index.html">ClubInc</a></h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+				</ul>
+			</nav>
+		</header>
 
-<!-- Form -->
-						<section position="center">
-							<h3>Login</h3>
+		<div id = "login-form">
+			<h3>Login</h3>
+			<input type="email" name="email" id="email" value="" placeholder="Email" />
+			<input type="password" name="password" id="password" value="" placeholder="Password" />
+			<div id = "login-buttons">
+				<button type="button" class="button" id="signIn" onclick="signIn()">Sign In</button>
+				<button type="button" class="button" id="signUp" onclick="signUp()">Sign Up</button>
+			</div>
 
-								<div id="formContainer">
-
-										<input type="email" name="email" id="email" value="" placeholder="Email" />
-
-
-										<input type="password" name="password" id="password" value="" placeholder="Password" />
-
-									<button type="button" class="button" id="signUp" onclick="signUp()">signup</button>
-									<button type="button" class="button" id="signIn" onclick="signIn()">signin</button>
-									<button type="button" class="button" id="signout" style="display: none;" onclick="signOut()">signout</button>
-
-											
-
-									</div>
-
-
-
-
-
-
-
-
-						</section>
+		</div>
                         
 		<!-- Footer -->
 
 
-				<footer class="footer" id="footer">
-				<div class="container">
-					
-					<div class="row">
-						<div class="8u 12u$(medium)">
-							<ul class="copyright">
-								<li>&copy; ClubInc. All rights reserved.</li>
-							</ul>
-						</div>
-					</div>
+		<footer class="footer" id="footer">
+		<div class="container">
+
+			<div class="row">
+				<div class="8u 12u$(medium)">
+					<ul class="copyright">
+						<li>&copy; ClubInc. All rights reserved.</li>
+					</ul>
 				</div>
-				</footer>
+			</div>
+		</div>
+		</footer>
 	</body>
 </html>
