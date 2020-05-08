@@ -25,8 +25,13 @@ function signUp(){
     promise.catch(e => alert(e.message));
     //alert("Signed Up");
 
+
 }
 
+function uploadImage(e) {
+    const file = e.target.files[0]
+    console.log(file);
+}
 
 //Signs into youre account.
 function signIn(){
@@ -98,3 +103,22 @@ auth.onAuthStateChanged(function(user){
     }
 
 });
+
+
+
+
+
+//Display Profile Picture
+
+function showUserDetails(){
+
+    var user = firebase.auth().currentUser;
+    var name, photoUrl;
+
+    if (user != null) {
+        name = user.displayName;
+        photoUrl = user.photoURL;
+
+        document.getElementById('dp').innerHTML=photoURL;
+        document.getElementById('username').innerHTML=name;
+    }}

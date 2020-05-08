@@ -46,12 +46,16 @@ This is where the user would log into their club to manage it.
 </header>
 
 <div id = "login-form">
-    <h3>Login</h3>
+    <h3>Sign Up</h3>
     <input type="email" name="email" id="email" value="" placeholder="Email" />
     <input type="password" name="password" id="password" value="" placeholder="Password" />
+    <div id = "choose-profile-pic">
+        <label for = "profile_img">Profile Image</label>
+        <input type="file" id = "profile_img" onchange="uploadImage(e)" />
+    </div>
     <div id = "login-buttons">
-        <button type="button" class="button" id="signIn" onclick="signIn()">Sign In</button>
         <button type="button" class="button" id="signUp" onclick="signUp()">Sign Up</button>
+        <a href="SignIn.html" > Already have an account? Sign In</a>
     </div>
 
 </div>

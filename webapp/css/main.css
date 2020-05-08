@@ -102,6 +102,13 @@ div.a{
     justify-content: space-between;
 }
 
+#choose-profile-pic {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 #login-buttons button {
     margin: 5px;
 }
