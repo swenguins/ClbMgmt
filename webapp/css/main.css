@@ -70,6 +70,11 @@ textarea#Description {
     padding-left: 5vw;
 }
 
+.profile-eventlist {
+    padding-right: 5vw;
+    padding-left: 5vw;
+}
+
 .profile-welcome {
     margin-top: 10px;
     display: flex;

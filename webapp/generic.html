@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+	Team Penguin: Noah Doyle 4/12/20
+				  Kevin Bullock
+This page is a test profile
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+    <script src="form.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <noscript>
+        <link rel="stylesheet" href="css/skel.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-xlarge.css" />
+    </noscript>
+</head>
+
+
+<!-- Header -->
+
+<header id="header">
+    <h1><a href="profile.html">Home</a></h1>
+    <nav id="nav">
+        <ul>
+            <li><a href="profile.html">Home</a></li>
+            <li><a href="generic.html">Manage Your Clubs</a></li>
+            <li><a href="account.html">Manage Your Account</a></li>
+            <li><a href="create.html">Create a Club</a></li>
+            <li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
+        </ul>
+
+
+    </nav>
+</header>
+
+<!-- Main -->
+
+
+<div class="profile-welcome">
+    <img src="images/profile_placeholder.gif" alt="" />
+
+    <h2 id ="welcome"> </h2>
+    <p>Events are listed below.</p>
+</div>
+<div class = "profile-eventlist">
+    <!-- Table -->
+    <h3>Current Events</h3>
+    <h4></h4>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Description</th>
+                <th>Event Date</th>
+                <th>Event Start Time</th>
+                <th>CheckIn</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Gold's Gym</td>
+                <td>Hot Dad Bod: How To</td>
+                <td>3/1/20</td>
+                <td>3:00pm</td>
+                <td><a href="#"  class="button small">CheckIn</a></td>
+            </tr>
+            <tr>
+                <td>Rowan Game Club</td>
+                <td>Chess For Dogs</td>
+                <td>3/1/20</td>
+                <td>3:00pm</td>
+                <td><a href="#" class="button small">CheckIn</a></td>
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>Enter a club name to search for a new Club</td>
+                <td>
+                    <label for="name"></label>
+                    <input type="text" name="Club Name" id="name" value="" placeholder="Search Club Name"/>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!-- This table should get populated with all of the users owned clubs, it currently has placeholder data-->
+    <h3>Upcoming Events</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Event Date</th>
+                <th>Event Start Time</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Gold's Gym</td>
+                <td>Biceps for Bis</td>
+                <td>3/1/20</td>
+                <td>3:00pm</td>
+                <td><a href="#" class="button small">CheckIn</a></td>
+            </tr>
+            <tr>
+                <td>Rowan Game Club</td>
+                <td>Pool</td>
+                <td>3/1/20</td>
+                <td>3:00pm</td>
+                <td><a href="#" class="button small">CheckIn</a></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+</html>
