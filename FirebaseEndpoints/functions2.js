@@ -41,11 +41,11 @@ addBtn.addEventListener('click', e => {
 */
 //
 addBtn.addEventListener('click', e => {
-  e.preventDefault();
-  const ID = clubsCollection.add({
-    club_name: clubName.value,
-    description: description.value,
-    num_users: Number(num_users.value)
+      e.preventDefault();
+      const ID = clubsCollection.add({
+        club_name: clubName.value,
+        description: description.value,
+        num_users: Number(num_users.value)
   });
 });
 
