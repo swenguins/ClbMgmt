@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!--
 	Team Penguin: Noah Doyle 4/12/20
+				  Kevin Bullock
 This page is a test profile
 -->
 <html lang="en">
@@ -32,149 +33,125 @@ This page is a test profile
 			<link rel="stylesheet" href="css/style-xlarge.css" />
 		</noscript>
 	</head>
-	<body>
+
 
 		<!-- Header -->
      
-			<header id="header">
-				<h1><a href="profile.html">Home</a></h1>
-				<nav id="nav">
-					<ul>
-						<li><a href="profile.html">Home Profile</a></li>
-						<li><a href="generic.html">Manage your clubs</a></li>
-						<li><a href="create.html">Create a Club</a></li>
-						<li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
-					</ul>
+	<header id="header">
+		<h1><a href="profile.html">Home</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a href="profile.html">Home</a></li>
+				<li><a href="generic.html">Manage Your Clubs</a></li>
+				<li><a href="account.html">Manage Your Account</a></li>
+				<li><a href="create.html">Create a Club</a></li>
+				<li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
+			</ul>
 
 
-				</nav>
-			</header>
+		</nav>
+	</header>
 
 		<!-- Main -->
-			<section id="main" class="wrapper">
-				<div class="container">
 
-					<header class="major">
-                        <img src="images/profile_placeholder.gif" alt="" />
 
-						<h2 id ="welcome"> </h2>
-						<p>The Clubs you're currently enlisted in are listed below.</p>
-					</header>
-                    <body>
-                        <!-- Table -->
-						<section>
-							<h3>Clubs</h3>
-							<h4></h4>
-							<div class="table-wrapper">
-								<table>
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Description</th>
-                                            <th>Next Event Date</th>
-                                             <th>Next Event Time</th>
-											<th>CheckIn</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Gold's Gym</td>
-											<td>Find upcoming workout classes</td>
-                                            <td>3/1/20</td>
-                                            <td>3:00pm</td>
-											<td><a href="#"  class="button small">CheckIn</a></td>
-										</tr>
-										<tr>
-											<td>Rowan Game Club</td>
-											<td>Rowan's own Game Club, stop by every Wednesday and Friday.</td>
-                                            <td>3/1/20</td>
-                                            <td>3:00pm</td>
-											<td><a href="#" class="button small">CheckIn</a></td>
-										</tr>
+	<div class="profile-welcome">
+		<img src="images/profile_placeholder.gif" alt="" />
 
-									</tbody>
-									<tfoot>
-										<tr>
-                                            <td>Enter a club name to search for a new Club</td>
-                                            <td>
+		<h2 id ="welcome"> </h2>
+		<p>The Clubs you're currently enlisted in are listed below.</p>
+	</div>
+	<div class = "profile-clublist">
+		<!-- Table -->
+		<h3>Clubs</h3>
+		<h4></h4>
+		<div class="table-wrapper">
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Next Event Date</th>
+						 <th>Next Event Time</th>
+						<th>CheckIn</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Gold's Gym</td>
+						<td>Find upcoming workout classes</td>
+						<td>3/1/20</td>
+						<td>3:00pm</td>
+						<td><a href="#"  class="button small">CheckIn</a></td>
+					</tr>
+					<tr>
+						<td>Rowan Game Club</td>
+						<td>Rowan's own Game Club, stop by every Wednesday and Friday.</td>
+						<td>3/1/20</td>
+						<td>3:00pm</td>
+						<td><a href="#" class="button small">CheckIn</a></td>
+					</tr>
 
-										<input type="text" name="Club Name" id="name" value="" placeholder="Search Club Name" />
-                                            </td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>Enter a club name to search for a new Club</td>
+						<td>
+						<label for="name"></label>
+						<input type="text" name="Club Name" id="name" value="" placeholder="Search Club Name"/>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
 
 							<!-- This table should get populated with all of the users owned clubs, it currently has placeholder data-->
-<h3>Owned Clubs</h3>
-							<div class="table-wrapper">
-								<table>
-									<thead>
-									<tr>
-										<th>Name</th>
-										<th>Description</th>
-										<th>Next Event Date</th>
-										<th>Next Event Time</th>
+		<h3>Owned Clubs</h3>
+		<div class="table-wrapper">
+			<table>
+				<thead>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Next Event Date</th>
+					<th>Next Event Time</th>
 
-									</tr>
-									</thead>
-									<tbody>
-									<tr>
-										<td>Gold's Gym</td>
-										<td>Find upcoming workout classes</td>
-										<td>3/1/20</td>
-										<td>3:00pm</td>
-										<td><a href="#" id="managebtn" class="button small" onclick="manageClub()">Manage</a></td>
-									</tr>
-									<tr>
-										<td>Rowan Game Club</td>
-										<td>Rowan's own Game Club, stop by every Wednesday and Friday.</td>
-										<td>3/1/20</td>
-										<td>3:00pm</td>
-										<td><button type="button"  id="managebtn" class="button small" onclick="manageClub()">Manage</button></td>
-									</tr>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>Gold's Gym</td>
+					<td>Find upcoming workout classes</td>
+					<td>3/1/20</td>
+					<td>3:00pm</td>
+					<td><a href="#" class="button small" onclick="manageClub()">Manage</a></td>
+				</tr>
+				<tr>
+					<td>Rowan Game Club</td>
+					<td>Rowan's own Game Club, stop by every Wednesday and Friday.</td>
+					<td>3/1/20</td>
+					<td>3:00pm</td>
+					<td><button type="button" class="button small" onclick="manageClub()">Manage</button></td>
+				</tr>
 
-									</tbody>
-									<tfoot>
-									<tr>
-										<td><button type="button"  id="createbtn" class="button small" onclick="createClub()">Create Club</button></td>
+				</tbody>
+			</table>
+		</div>
 
-										<td><button type="button"  id="analyticsbtn" class="button small" onclick="getClubAnalytics()">Club Analytics</button></td>
-									</tr>
-									</tfoot>
-								</table>
-							</div>
-
-
-                    
-
+			<!-- This section is where the management stuff will go -->
+			<section id="manage" style="display: none;" >
+				<h3>Club Management </h3>
 
 			</section>
-						<!-- This section is where the management stuff will go -->
-						<section id="manage" style="display: none;" >
-							<h3>Club Management </h3>
 
-						</section>
+			<!-- This section is where the analytics stuff will go or it could go in the table that gets populated with all the owned clubs.  -->
+			<section id="analytics" style= "display: none;" >
+				<h3> Analytics </h3>
 
-						<!-- This section is where the analytics stuff will go or it could go in the table that gets populated with all the owned clubs.  -->
-						<section id="analytics" style="display: none;" >
-							<h3> Analytics </h3>
-
-						</section>
-
-						<!-- This section is where the Club Creation stuff will go, Ive set up a few input boxes for you already, but you may need more -->
-						<section id="create" style="display: none;" >
-							<h3> Create Club Here</h3>
-							<input type="text" name="Club Name" id="name" value="" placeholder="Club Name" />
-							<input type="text" name="Club Description" id="description" value="" placeholder="Club Description" />
+			</section>
 
 
-
-
-						</section>
-
-		</section>
-	</body>
+	</div>
 
 
 </html>

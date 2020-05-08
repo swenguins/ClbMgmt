@@ -47,6 +47,13 @@ input#password {
     align-content: space-between;
 }
 
+#event-checkin {
+    height: 87vh;
+    padding-left: 5vw;
+    padding-top: 3vh;
+    padding-right: 5vw;
+}
+
 textarea#Description {
     width: 50vw;
     border-radius: 5px;
@@ -60,6 +67,22 @@ textarea#Description {
     color: white;
     text-align: center;
     padding: 0 0 0;
+}
+
+.profile-clublist {
+    padding-right: 5vw;
+    padding-left: 5vw;
+}
+
+.profile-welcome {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-welcome img {
+    border-radius: 50%;
 }
 
 div.a{
