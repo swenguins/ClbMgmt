@@ -4,6 +4,7 @@ var user_profile_pic = null;
 
 window.addEventListener("load", function () {
     addClickListeners();
+    addInputListeners();
     console.log(localStorage['current_club'])
     if (window.location.href.includes("Manage.html") || window.location.href.includes("clubinfo.html")){
         console.log(localStorage['current_club']);
@@ -223,44 +224,37 @@ function addClickListeners(){
     }
 }
 
-function addChangeListeners(){
-
+function addInputListeners(){
+    console.log("here to add listener")
    var new_club_search = document.getElementById("club-search-name");
     if(new_club_search){
-        new_event_button.addEventListener('change', function () {
-            searchClub();
+        new_club_search.addEventListener('input', function () {
+            console.log(new_club_search.value)
+            searchClub(new_club_search.value);
         })
     }
   var  new_event_search = document.getElementById("event-search-name");
-    if(new_club_search){
-        new_event_button.addEventListener('change', function () {
-searchEvent();
+    if(new_event_search){
+        new_event_search.addEventListener('input', function () {
+            searchEvent(new_event_search.value);
         })
     }
 }
 
-function searchClub(){
-var clubSearch = new_club_search.value()
-}
-var clubs = [];
+function searchClub(data){
+    console.log("here")
+    var clubs = [];
     clubsCollection.get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
+        querySnapshot.forEach(function (doc) {
             console.log(doc.id)
-            test = doc.id;
-            console.log(test)
+            console.log(doc)
             console.log(doc.description);
             console.log(doc.club_name);
-            if(clubSearch == doc.club_name){
-                clubs.add(doc.club_name, doc.club_description);
+            if (doc.club_name.includes(data)) {
+                clubs.add((doc.club_name, doc.description));
+                console.log(clubs)
             }
-            return test;
-
         });
-
-
+    })
 }
 
-function searchEvent(){
-    const eventsCollection = database.collection('clubs').doc(localStorage['club_id']).collection("Events");
-
-}
