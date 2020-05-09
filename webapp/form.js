@@ -1,6 +1,9 @@
 //Script Written by Noah Doyle
 // Your web app's Firebase configuration
 var user_profile_pic = null;
+var current_club = null;
+
+addClickListeners();
 
 var firebaseConfig = {
 //firebase config stuff
@@ -159,4 +162,17 @@ function getClubByName(name) {
 // Create a query against the collection.
     var query = clubsCollection.where("club_name", "==", name);
     return query;
+}
+
+
+
+function addClickListeners(){
+    clubs = document.getElementsByClassName("manageButton");
+    console.log("here")
+    for (let i = 0 ; i < clubs.length ; i++){
+        clubs[i].addEventListener("click", function(){
+            current_club = clubs[i].parentElement.parentElement.firstElementChild.innerHTML;
+            console.log(current_club);
+        })
+    }
 }
