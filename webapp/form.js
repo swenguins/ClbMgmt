@@ -45,6 +45,10 @@ function uploadImage(e) {
     image.src = URL.createObjectURL(e.target.files[0]);
     console.log(user_profile_pic);
 }
+//Saves a bit of info hidden on the profile.html page
+function infoholder() {
+
+}
 
 //Signs into youre account.
 function signIn(){
