@@ -253,7 +253,7 @@ function searchClub(data){
             var name = doc.data().club_name;
             name = name.toLowerCase();
             if (name.includes(data)) {
-
+displayClub(doc.data().club_name,doc.data().description);
             }
         });
     })
@@ -290,4 +290,16 @@ function displayEvent(name, desc, start, date){
     cell2.innerHTML = desc;
     cell3.innerHTML = start;
     cell4.innerHTML = date;
+}
+
+function displayClub(name, descrip)
+{
+
+    var table = document.getElementById("tableBody");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+
+    cell1.innerHTML = name;
+    cell2.innerHTML = descrip;
 }
