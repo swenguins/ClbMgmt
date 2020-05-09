@@ -1,5 +1,7 @@
 //Script Written by Noah Doyle
 // Your web app's Firebase configuration
+var user_profile_pic = null;
+
 var firebaseConfig = {
 //firebase config stuff
     apiKey: "AIzaSyAE11kj_DIRt2w7UhJzLfd7FKJBgrXr1-8",
@@ -13,7 +15,8 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+const database = firebase.firestore();
+const clubsCollection = database.collection('clubs');
 const auth = firebase.auth();
 
 //Function for creating an account
@@ -21,6 +24,12 @@ function signUp(){
 
     var email = document.getElementById("email");
     var password = document.getElementById("password");
+
+    if (user_profile_pic){
+        firebase.storage().ref('user-profile-pics/' + user_profile_pic.name).put(user_profile_pic);
+    }
+
+
     const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
     promise.catch(e => alert(e.message));
     //alert("Signed Up");
@@ -29,8 +38,8 @@ function signUp(){
 }
 
 function uploadImage(e) {
-    const file = e.target.files[0]
-    console.log(file);
+    user_profile_pic = e.target.files[0];
+    console.log(user_profile_pic);
 }
 
 //Signs into youre account.
@@ -59,9 +68,12 @@ function signOut(){
 
 function createClub(){
     var user = firebase.auth().currentUser;
-    document.getElementById("create").style.display = "block";
-    //TODO: Create Club Function, this can either be done in the profile html or in a new html,
-
+    var clubName = document.getElementById("New-Club-Name");
+    var description = document.getElementById("New-Club-Description");
+    const ID = clubsCollection.add({
+        club_name: clubName.value,
+        description: description.value
+    });
 }
 
 function manageClub(){
@@ -120,16 +132,3 @@ function showUserDetails(){
     }}
 
 
-const addBtn = document.getElementById('addBtn');
-
-const database = firebase.firestore();
-const clubsCollection = database.collection('clubs');
-
-addBtn.addEventListener('click', e => {
-    e.preventDefault();
-    const ID = clubsCollection.add({
-        club_name: clubName.value,
-        description: description.value,
-        num_users: Number(num_users.value)
-    });
-});
