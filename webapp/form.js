@@ -173,6 +173,7 @@ function addClickListeners(){
         clubs[i].addEventListener("click", function(){
             current_club = clubs[i].parentElement.parentElement.firstElementChild.innerHTML;
             console.log(current_club);
+            window.location.href = 'clubinfo.html';
         })
     }
 }
