@@ -226,10 +226,10 @@ function addClickListeners(){
 
 function addInputListeners(){
     console.log("here to add listener")
-   var new_club_search = document.getElementById("club-search-name");
+    let new_club_search = document.getElementById("club-search-name");
     if(new_club_search){
         new_club_search.addEventListener('input', function () {
-            club_table= document.getElementById("tableBody")
+            let club_table= document.getElementById("tableBody")
             club_table.innerHTML = "";
             if (new_club_search.value != ""){
                 searchClub(new_club_search.value);
@@ -240,11 +240,11 @@ function addInputListeners(){
   var  new_event_search = document.getElementById("event-search-name");
     if(new_event_search){
         new_event_search.addEventListener('input', function () {
-            event_table = document.getElementById("event-search-table");
-            event_table.innerHTML = "";
-            if (new_event_search.value != "") {
-                searchEvent(new_event_search.value);
-            }
+            clearEventTable().then(r => {
+                if (new_event_search.value != "") {
+                    searchEvent(new_event_search.value);
+                }
+            });
         })
     }
 }
@@ -256,7 +256,7 @@ function searchClub(data){
             var name = doc.data().club_name;
             name = name.toLowerCase();
             if (name.includes(data)) {
-displayClub(doc.data().club_name,doc.data().description);
+                displayClub(doc.data().club_name,doc.data().description);
             }
         });
     })
@@ -272,6 +272,7 @@ function searchEvent(data){
                     var name = doc.data().event_name;
                     name = name.toLowerCase();
                     if (name.includes(data)) {
+                        console.log("adding row")
                         displayEvent(doc.data().event_name, doc.data().description,doc.data().start_time,doc.data().date);
                     }
                 });
@@ -291,8 +292,15 @@ function displayEvent(name, desc, start, date){
 
     cell1.innerHTML = name;
     cell2.innerHTML = desc;
-    cell3.innerHTML = start;
-    cell4.innerHTML = date;
+    cell3.innerHTML = date;
+    cell4.innerHTML = start;
+}
+
+async function clearEventTable() {
+    event_table = document.getElementById("event-search-table");
+    event_table.innerHTML = "";
+    console.log("cleared")
+    return "resolved";
 }
 //Displays the club in profile
 function displayClub(name, descrip)
@@ -302,7 +310,8 @@ function displayClub(name, descrip)
     var row = table.insertRow(0);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
-
+    var cell3 = row.insertCell(2);
     cell1.innerHTML = name;
     cell2.innerHTML = descrip;
+    cell3.innerHTML = "<a href='#'  class='manageButton'>Join</a>";
 }
