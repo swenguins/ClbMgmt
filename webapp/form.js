@@ -229,8 +229,11 @@ function addInputListeners(){
    var new_club_search = document.getElementById("club-search-name");
     if(new_club_search){
         new_club_search.addEventListener('input', function () {
+            club_table= document.getElementById("tableBody")
+            club_table.innerHTML = "";
             if (new_club_search.value != ""){
                 searchClub(new_club_search.value);
+
             }
         })
     }
