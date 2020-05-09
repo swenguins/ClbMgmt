@@ -104,10 +104,6 @@ auth.onAuthStateChanged(function(user){
 
 });
 
-
-
-
-
 //Display Profile Picture
 
 function showUserDetails(){
@@ -122,3 +118,18 @@ function showUserDetails(){
         document.getElementById('dp').innerHTML=photoURL;
         document.getElementById('username').innerHTML=name;
     }}
+
+
+const addBtn = document.getElementById('submitBtn');
+
+const database = firebase.firestore();
+const clubsCollection = database.collection('clubs');
+
+addBtn.addEventListener('click', e => {
+    e.preventDefault();
+    const ID = clubsCollection.add({
+        club_name: clubName.value,
+        description: description.value,
+        num_users: Number(num_users.value)
+    });
+});

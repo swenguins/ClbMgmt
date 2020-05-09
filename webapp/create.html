@@ -39,7 +39,7 @@ This is where a user would create a Club (MAY NOT BE USED, PROBABLY EASIER TO US
 
 		<!-- Header -->
 			<header id="header">
-				<h1><a href="index.html">ClubInc</a></h1>
+				<h1><a href="index.html">Igloo</a></h1>
 				<nav id="nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
@@ -72,10 +72,17 @@ This is where a user would create a Club (MAY NOT BE USED, PROBABLY EASIER TO US
 								<label for="Max Users">Max Users</label>
 							</div>
 
-                            <button id="submit">Submit</button>
-                            
-                            <script src="/js/app.js"></script>
-                            <script src="/js/app.create.js"></script>
+							<div id = "choose-profile-pic">
+								<label for = "profile_img">Profile Image</label>
+								<input type="file" id = "profile_img" onchange="uploadImage(e)" />
+							</div>
+
+                            <!--<button id="submit">Submit</button>-->
+
+							<div id = "club-buttons">
+								<button type="button" class="button" id="clubSubmit" onclick="">Submit</button>
+							</div>
+
 							
 						</section>
 	</body>
@@ -86,7 +93,7 @@ This is where a user would create a Club (MAY NOT BE USED, PROBABLY EASIER TO US
 					<div class="row">
 						<div class="8u 12u$(medium)">
 							<ul class="copyright">
-								<li>&copy; ClubInc. All rights reserved.</li>
+								<li>&copy; Igloo. All rights reserved.</li>
 							</ul>
 						</div>
 					</div>
