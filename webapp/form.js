@@ -237,9 +237,9 @@ function addInputListeners(){
   var  new_event_search = document.getElementById("event-search-name");
     if(new_event_search){
         new_event_search.addEventListener('input', function () {
+            event_table = document.getElementById("event-search-table");
+            event_table.innerHTML = "";
             if (new_event_search.value != "") {
-                event_table = document.getElementById("event-search-table");
-                event_table.innerHTML = "";
                 searchEvent(new_event_search.value);
             }
         })
