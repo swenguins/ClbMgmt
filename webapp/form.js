@@ -247,11 +247,11 @@ function searchClub(data){
     clubsCollection.get().then(function(querySnapshot) {
         querySnapshot.forEach(function (doc) {
             console.log(doc.id)
-            console.log(doc)
-            console.log(doc.description);
-            console.log(doc.club_name);
-            if (doc.club_name.includes(data)) {
-                clubs.add((doc.club_name, doc.description));
+            console.log(doc.data())
+            console.log(doc.data().description);
+            console.log(doc.data().club_name);
+            if (doc.data().club_name.includes(data)) {
+                clubs.add((doc.data().club_name, doc.data().description));
                 console.log(clubs)
             }
         });
