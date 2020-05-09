@@ -229,14 +229,17 @@ function addInputListeners(){
    var new_club_search = document.getElementById("club-search-name");
     if(new_club_search){
         new_club_search.addEventListener('input', function () {
-            console.log(new_club_search.value)
-            searchClub(new_club_search.value);
+            if (new_club_search.value != ""){
+                searchClub(new_club_search.value);
+            }
         })
     }
   var  new_event_search = document.getElementById("event-search-name");
     if(new_event_search){
         new_event_search.addEventListener('input', function () {
-            searchEvent(new_event_search.value);
+            if (new_event_search.value != "") {
+                searchEvent(new_event_search.value);
+            }
         })
     }
 }
@@ -246,10 +249,6 @@ function searchClub(data){
     var clubs = [];
     clubsCollection.get().then(function(querySnapshot) {
         querySnapshot.forEach(function (doc) {
-            console.log(doc.id)
-            console.log(doc.data())
-            console.log(doc.data().description);
-            console.log(doc.data().club_name);
             var name = doc.data().club_name;
             name = name.toLowerCase();
             if (name.includes(data)) {
@@ -258,5 +257,6 @@ function searchClub(data){
             }
         });
     })
+    console.log(clubs)
 }
 
