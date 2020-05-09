@@ -154,3 +154,9 @@ function createEvent() {
         time: time
     });
 }
+
+function getClubByName(name) {
+// Create a query against the collection.
+    var query = clubsCollection.where("club_name", "==", name);
+    return query;
+}
