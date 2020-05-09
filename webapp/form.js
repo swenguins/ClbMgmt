@@ -1,9 +1,20 @@
 //Script Written by Noah Doyle
 // Your web app's Firebase configuration
 var user_profile_pic = null;
-var current_club = null;
 
-addClickListeners();
+window.addEventListener("load", function () {
+    addClickListeners();
+    console.log(localStorage['current_club'])
+    if (window.location.href.includes("Manage.html") || window.location.href.includes("clubinfo.html")){
+        console.log(localStorage['current_club']);
+        getClubByName(localStorage['current_club']);
+        console.log(localStorage['club_id'])
+    }
+    else {
+        //localStorage['current_club'] = null;
+    }
+})
+
 
 var firebaseConfig = {
 //firebase config stuff
@@ -20,7 +31,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.firestore();
 const clubsCollection = database.collection('clubs');
-const eventsCollection = database.collection('clubs').doc("szHiqxe60qojiYzS8j8W").collection("Events");
 const auth = firebase.auth();
 
 //Function for creating an account
@@ -37,8 +47,6 @@ function signUp(){
     const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
     promise.catch(e => alert(e.message));
     //alert("Signed Up");
-
-
 }
 
 function uploadImage(e) {
@@ -47,10 +55,6 @@ function uploadImage(e) {
     var image = document.getElementById("profile_img_preview");
     image.src = URL.createObjectURL(e.target.files[0]);
     console.log(user_profile_pic);
-}
-//Saves a bit of info hidden on the profile.html page
-function infoholder() {
-
 }
 
 //Signs into youre account.
@@ -81,10 +85,12 @@ function createClub(){
     var user = firebase.auth().currentUser;
     var clubName = document.getElementById("New-Club-Name");
     var description = document.getElementById("New-Club-Description");
-    const ID = clubsCollection.add({
+    var ID = clubsCollection.add({
         club_name: clubName.value,
         description: description.value
     });
+    ID.then(window.location.href = 'profile.html');
+
 }
 
 function manageClub(){
@@ -117,8 +123,6 @@ auth.onAuthStateChanged(function(user){
         var email = user.email; //creates a variable to store the users email. This can be done similarly with any of the users info, in this loop.
         //document.getElementById("welcome").innerHTML = "Welcome User : " + email;
 
-        alert("Active User " + email); //sends an alert that the user is signed in, is a testing alert and should be removed upon rollout
-
     }else{
         //no user is signed in
         alert("No Active User");
@@ -144,35 +148,77 @@ function showUserDetails(){
 
 
 function createEvent() {
+    const eventsCollection = database.collection('clubs').doc(localStorage['club_id']).collection("Events");
+    console.log(eventsCollection)
     var eventName = document.getElementById("New-Event-Name");
     var description = document.getElementById("New-Event-Description");
     var date = document.getElementById("meeting-time");
-    var dates = date.split("T");
+    var dates = date.value.split("T");
     var time = dates[1];
     var day = dates[0];
     const ID = eventsCollection.add({
         event_name: eventName.value,
         description: description.value,
         date: day,
-        time: time
+        start_time: time
     });
+    ID.then(window.location.href = 'clubinfo.html');
 }
 
 function getClubByName(name) {
-// Create a query against the collection.
-    var query = clubsCollection.where("club_name", "==", name);
-    return query;
+    let returnString = "here";
+    let test = "";
+    clubsCollection.where("club_name", "==", name).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            console.log(doc.id)
+            test = doc.id;
+            console.log(test)
+            return test;
+        });
+        console.log(test)
+        console.log(returnString)
+        returnString = test;
+        console.log(returnString)
+        returnClubID(returnString);
+    })
+
 }
 
-
+function returnClubID(data) {
+    localStorage['club_id'] = data;
+}
 
 function addClickListeners(){
     clubs = document.getElementsByClassName("manageButton");
-    console.log("here")
-    for (let i = 0 ; i < clubs.length ; i++){
-        clubs[i].addEventListener("click", function(){
-            current_club = clubs[i].parentElement.parentElement.firstElementChild.innerHTML;
-            console.log(current_club);
+    if (clubs.length > 0){
+        for (let i = 0 ; i < clubs.length ; i++){
+            if (clubs[i].innerHTML == 'Manage'){
+                clubs[i].addEventListener("click", function(){
+                    console.log(clubs[i].parentElement.parentElement.firstElementChild.innerHTML);
+                    localStorage['current_club'] = clubs[i].parentElement.parentElement.firstElementChild.innerHTML;
+                    window.location.href = "clubinfo.html";
+                })
+            }
+            else{
+                clubs[i].addEventListener("click", function(){
+                    console.log(clubs[i].parentElement.parentElement.firstElementChild.innerHTML);
+                    localStorage['current_club'] = clubs[i].parentElement.parentElement.firstElementChild.innerHTML;
+                    window.location.href = "user-club-metrics.html";
+                })
+            }
+        }
+    }
+
+    new_club_button = document.getElementById("addBtn");
+    if (new_club_button){
+        new_club_button.addEventListener('click', function () {
+            createClub();
+        })
+    }
+    new_event_button = document.getElementById("event-btn");
+    if (new_event_button){
+        new_event_button.addEventListener('click', function () {
+            createEvent();
         })
     }
 }

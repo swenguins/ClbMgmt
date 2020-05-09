@@ -42,15 +42,14 @@ This page is a test profile
 <!-- Header -->
 
 <header id="header">
-    <h1><a href="index.html">
-        <img src="images/igloo_logo.png" alt="Italian Trulli" style="width:78px; height: 65px; margin-top: 5px">
+    <h1><a href="generic.html">
+        <img src="images/igloo_logo.png" alt="Italian Trulli" style="width:78px; height: 65px; margin-top: 2vh">
     </a></h1>
     <nav id="nav">
         <ul>
             <li><a href="generic.html">Home</a></li>
             <li><a href="profile.html">Manage Your Clubs</a></li>
-            <li><a href="account.html">Manage Your Account</a></li>
-            <li><a href="create.html">Create a Club</a></li>
+            <li><a href="EditAccount.html">Manage Your Account</a></li>
             <li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
         </ul>
 
@@ -101,10 +100,10 @@ This page is a test profile
             </tbody>
             <tfoot>
             <tr>
-                <td>Enter a club name to search for a new Club</td>
+                <td>Enter an event ID to search for an event.</td>
                 <td>
                     <label for="name"></label>
-                    <input type="text" name="Club Name" id="name" value="" placeholder="Search Club Name"/>
+                    <input type="text" name="Event Name" id="name" value="" placeholder="Search Event ID"/>
                 </td>
             </tr>
             </tfoot>

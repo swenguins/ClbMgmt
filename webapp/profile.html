@@ -42,15 +42,14 @@ This page is a test profile
 		<!-- Header -->
      
 	<header id="header">
-		<h1><a href="index.html">
-			<img src="images/igloo_logo.png" alt="Italian Trulli" style="width:78px; height: 65px; margin-top: 5px">
+		<h1><a href="generic.html">
+			<img src="images/igloo_logo.png" alt="Italian Trulli" style="width:78px; height: 65px; margin-top: 2vh">
 		</a></h1>
 		<nav id="nav">
 			<ul>
 				<li><a href="generic.html">Home</a></li>
 				<li><a href="clubinfo.html">Manage Your Clubs</a></li>
-				<li><a href="account.html">Manage Your Account</a></li>
-				<li><a href="create.html">Create a Club</a></li>
+				<li><a href="EditAccount.html">Manage Your Account</a></li>
 				<li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
 			</ul>
 
@@ -69,6 +68,9 @@ This page is a test profile
 	</div>
 	<div class = "profile-clublist">
 		<!-- Table -->
+		<div>
+			<button type="button" id="create-club-nav" onclick = 'window.location.href = "create.html"' >Create Club</button>
+		</div>
 		<h3>Clubs</h3>
 		<h4></h4>
 		<div class="table-wrapper">
@@ -79,7 +81,6 @@ This page is a test profile
 						<th>Description</th>
 						<th>Next Event Date</th>
 						 <th>Next Event Time</th>
-						<th>CheckIn</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -95,19 +96,11 @@ This page is a test profile
 						<td>Rowan's own Game Club, stop by every Wednesday and Friday.</td>
 						<td>3/1/20</td>
 						<td>3:00pm</td>
-						<td><a href="#" class="button small">Manage Registration</a></td>
+						<td><a href="#" class="manageButton">Manage Registration</a></td>
 					</tr>
 
 				</tbody>
-				<tfoot>
-					<tr>
-						<td>Enter an event ID to search for an event.</td>
-						<td>
-						<label for="name"></label>
-						<input type="text" name="Event Name" id="name" value="" placeholder="Search Event ID"/>
-						</td>
-					</tr>
-				</tfoot>
+
 			</table>
 		</div>
 
@@ -130,31 +123,21 @@ This page is a test profile
 					<td>Find upcoming workout classes</td>
 					<td>3/1/20</td>
 					<td>3:00pm</td>
-					<td><a href="#" class="manageButton" onclick = "window.location.href = 'clubinfo.html';">Manage</a></td>
+					<td><button type="button" class="manageButton">Manage</button></td>
 				</tr>
 				<tr>
 					<td>Rowan Game Club</td>
 					<td>Rowan's own Game Club, stop by every Wednesday and Friday.</td>
 					<td>3/1/20</td>
 					<td>3:00pm</td>
-					<td><button type="button" class="manageButton" onclick = "window.location.href = 'clubinfo.html';" >Manage</button></td>
+					<td><button type="button" class="manageButton">Manage</button></td>
 				</tr>
 
 				</tbody>
 			</table>
 		</div>
 
-			<!-- This section is where the management stuff will go -->
-			<section id="manage" style="display: none;" >
-				<h3>Club Management </h3>
 
-			</section>
-
-			<!-- This section is where the analytics stuff will go or it could go in the table that gets populated with all the owned clubs.  -->
-			<section id="analytics" style= "display: none;" >
-				<h3> Analytics </h3>
-
-			</section>
 
 
 

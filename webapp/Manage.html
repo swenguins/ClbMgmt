@@ -21,6 +21,7 @@ This is the place for users to manage their Clubs (MAY NOT BE USED IT WOULD PROB
 		<script src="js/init.js"></script>
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
 
         <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -38,15 +39,14 @@ This is the place for users to manage their Clubs (MAY NOT BE USED IT WOULD PROB
 
 		<!-- Header -->
 		<header id="header">
-			<h1><a href="index.html">
-				<img src="images/igloo_logo.png" alt="Italian Trulli" style="width:78px; height: 65px; margin-top: 5px">
+			<h1><a href="generic.html">
+				<img src="images/igloo_logo.png" alt="Italian Trulli" style="width:78px; height: 65px; margin-top: 2vh">
 			</a></h1>
 			<nav id="nav">
 				<ul>
 					<li><a href="generic.html">Home</a></li>
 					<li><a href="profile.html">Manage Your Clubs</a></li>
-					<li><a href="account.html">Manage Your Account</a></li>
-					<li><a href="create.html">Create</a></li>
+					<li><a href="EditAccount.html">Manage Your Account</a></li>
 					<li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
 				</ul>
 			</nav>
@@ -67,7 +67,7 @@ This is the place for users to manage their Clubs (MAY NOT BE USED IT WOULD PROB
 							<label for="meeting-time">Choose a time for your Event:</label>
 							<input type="datetime-local" id="meeting-time"
 								   name="meeting-time">
-							<button type="button" class="button" id="event-btn" onclick="createEvent();window.location.href = 'clubinfo.html';">Submit</button>
+							<button type="button" class="button" id="event-btn">Submit</button>
 						</section>
 
 		<!-- Footer -->
