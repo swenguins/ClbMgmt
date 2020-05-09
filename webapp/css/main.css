@@ -133,3 +133,20 @@ div.a{
 input[type="checkbox"] {
     margin-right: 0px;
 }
+
+#event-creation {
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    padding-right: 10vw;
+    padding-left: 10vw;
+}
+
+#event-creation input {
+    margin-top: 10px;
+}
+
+#event-creation button {
+    margin-top: 5px;
+    width:10vw;
+}

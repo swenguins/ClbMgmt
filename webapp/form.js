@@ -17,6 +17,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.firestore();
 const clubsCollection = database.collection('clubs');
+const eventsCollection = database.collection('clubs').doc("szHiqxe60qojiYzS8j8W").collection("Events");
 const auth = firebase.auth();
 
 //Function for creating an account
@@ -38,7 +39,10 @@ function signUp(){
 }
 
 function uploadImage(e) {
+    e.preventDefault();
     user_profile_pic = e.target.files[0];
+    var image = document.getElementById("profile_img_preview");
+    image.src = URL.createObjectURL(e.target.files[0]);
     console.log(user_profile_pic);
 }
 
@@ -104,7 +108,7 @@ auth.onAuthStateChanged(function(user){
 //User Is signed in
         var user = firebase.auth().currentUser;
         var email = user.email; //creates a variable to store the users email. This can be done similarly with any of the users info, in this loop.
-        document.getElementById("welcome").innerHTML = "Welcome User : " + email;
+        //document.getElementById("welcome").innerHTML = "Welcome User : " + email;
 
         alert("Active User " + email); //sends an alert that the user is signed in, is a testing alert and should be removed upon rollout
 
@@ -132,3 +136,17 @@ function showUserDetails(){
     }}
 
 
+function createEvent() {
+    var eventName = document.getElementById("New-Event-Name");
+    var description = document.getElementById("New-Event-Description");
+    var date = document.getElementById("meeting-time");
+    var dates = date.split("T");
+    var time = dates[1];
+    var day = dates[0];
+    const ID = eventsCollection.add({
+        event_name: eventName.value,
+        description: description.value,
+        date: day,
+        time: time
+    });
+}
