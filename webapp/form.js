@@ -120,7 +120,7 @@ function showUserDetails(){
     }}
 
 
-const addBtn = document.getElementById('submitBtn');
+const addBtn = document.getElementById('addBtn');
 
 const database = firebase.firestore();
 const clubsCollection = database.collection('clubs');
