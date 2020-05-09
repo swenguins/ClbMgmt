@@ -257,6 +257,5 @@ function searchClub(data){
             }
         });
     })
-    console.log(clubs)
 }
 
