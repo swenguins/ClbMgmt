@@ -225,4 +225,42 @@ function addClickListeners(){
 
 function addChangeListeners(){
 
+   var new_club_search = document.getElementById("club-search-name");
+    if(new_club_search){
+        new_event_button.addEventListener('change', function () {
+            searchClub();
+        })
+    }
+  var  new_event_search = document.getElementById("event-search-name");
+    if(new_club_search){
+        new_event_button.addEventListener('change', function () {
+searchEvent();
+        })
+    }
+}
+
+function searchClub(){
+var clubSearch = new_club_search.value()
+}
+var clubs = [];
+    clubsCollection.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            console.log(doc.id)
+            test = doc.id;
+            console.log(test)
+            console.log(doc.description);
+            console.log(doc.club_name);
+            if(clubSearch == doc.club_name){
+                clubs.add(doc.club_name, doc.club_description);
+            }
+            return test;
+
+        });
+
+
+}
+
+function searchEvent(){
+    const eventsCollection = database.collection('clubs').doc(localStorage['club_id']).collection("Events");
+
 }
