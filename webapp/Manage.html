@@ -59,20 +59,13 @@ This is the place for users to manage their Clubs (MAY NOT BE USED IT WOULD PROB
 				</ul>
 			</section>-->
 <!-- Form -->
-						<section id = "event-checkin">
-							<h3>Check-in to an Event</h3>
+						<section id = "event-creation">
+							<input type="textfield" id="New-Event-Name" placeholder="Event Name">
+							<input type="textfield" id="New-Event-Description" placeholder="Description"></input>
 
-							<div id = "My Club Events">
-								<h7>Your Club Events</h7>
-							</div>
-							<div id = "Nearby Events">
-								<h7>Check In To Nearby Events</h7>
-							</div>
-							<div id = "Check In By Event ID">
-								<h7>Check In By Event ID</h7>
-								<input type="text" name="Event ID" id="ID" value="" placeholder="Event ID" />
-								<input type="email" name="email" id="email" value="" placeholder="Email" />
-							</div>
+							<label for="meeting-time">Choose a time for your appointment:</label>
+							<input type="datetime-local" id="meeting-time"
+								   name="meeting-time">
 						</section>
                         
 		<!-- Footer -->
@@ -82,7 +75,7 @@ This is the place for users to manage their Clubs (MAY NOT BE USED IT WOULD PROB
 					<div class="row">
 						<div class="8u 12u$(medium)">
 							<ul class="copyright">
-								<li>&copy; ClubInc. All rights reserved.</li>
+								<li>&copy;Igloo. All rights reserved.</li>
 								
 							</ul>
 						</div>
