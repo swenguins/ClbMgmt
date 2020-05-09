@@ -57,7 +57,7 @@ function signIn(){
     var user = firebase.auth().currentUser;
     if(user != null)
     {
-        window.location.href = 'profile.html';
+        window.location.href = 'generic.html';
     }
 
 }
