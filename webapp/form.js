@@ -222,3 +222,7 @@ function addClickListeners(){
         })
     }
 }
+
+function addChangeListeners(){
+
+}
