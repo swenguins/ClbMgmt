@@ -242,7 +242,7 @@ function addInputListeners(){
 }
 
 function searchClub(data){
-    console.log("here")
+    console.log(data)
     var clubs = [];
     clubsCollection.get().then(function(querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -250,8 +250,10 @@ function searchClub(data){
             console.log(doc.data())
             console.log(doc.data().description);
             console.log(doc.data().club_name);
-            if (doc.data().club_name.includes(data)) {
-                clubs.add((doc.data().club_name, doc.data().description));
+            var name = doc.data().club_name;
+            name = name.toLowerCase();
+            if (name.includes(data)) {
+                clubs.push([doc.data().club_name, doc.data().description]);
                 console.log(clubs)
             }
         });
