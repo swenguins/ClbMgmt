@@ -98,15 +98,6 @@ This page is a test profile
             </tr>
 
             </tbody>
-            <tfoot>
-            <tr>
-                <td>Enter an event ID to search for an event.</td>
-                <td>
-                    <label for="event-search-name"></label>
-                    <input type="text" name="Event Name" id="event-search-name" value="" placeholder="Search Event ID"/>
-                </td>
-            </tr>
-            </tfoot>
         </table>
     </div>
 
@@ -139,8 +130,32 @@ This page is a test profile
 
             </tbody>
         </table>
-    </div>
 
+        <h3>Search For Events</h3>
+        <div class="table-wrapper">
+            <tr style = "margin-bottom: 10px; ">
+                <td>Enter an event ID to search for an event.</td>
+                <td>
+                    <label for="event-search-name"></label>
+                    <input type="text" name="Event Name" id="event-search-name" value="" placeholder="Search Event ID"/>
+                </td>
+            </tr>
+            <table>
+                <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Description</th>
+                    <th>Event Date</th>
+                    <th>Event Start Time</th>
+                </tr>
+                </thead>
+                <tbody id = "event-search-table">
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 

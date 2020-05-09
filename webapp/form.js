@@ -238,6 +238,8 @@ function addInputListeners(){
     if(new_event_search){
         new_event_search.addEventListener('input', function () {
             if (new_event_search.value != "") {
+                event_table = document.getElementById("event-search-table");
+                event_table.innerHTML = "";
                 searchEvent(new_event_search.value);
             }
         })
@@ -246,16 +248,46 @@ function addInputListeners(){
 
 function searchClub(data){
     console.log(data)
-    var clubs = [];
     clubsCollection.get().then(function(querySnapshot) {
         querySnapshot.forEach(function (doc) {
             var name = doc.data().club_name;
             name = name.toLowerCase();
             if (name.includes(data)) {
-                clubs.push([doc.data().club_name, doc.data().description]);
-                console.log(clubs)
+
             }
         });
     })
 }
 
+function searchEvent(data){
+    console.log(data)
+    clubsCollection.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            const eventsCollection = database.collection('clubs').doc(doc.id).collection("Events");
+            eventsCollection.get().then(function(querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    var name = doc.data().event_name;
+                    name = name.toLowerCase();
+                    if (name.includes(data)) {
+                        displayEvent(doc.data().event_name, doc.data().description,doc.data().start_time,doc.data().date);
+                    }
+                });
+            })
+        });
+    })
+
+}
+
+function displayEvent(name, desc, start, date){
+    event_table = document.getElementById("event-search-table");
+    var row = event_table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+    cell1.innerHTML = name;
+    cell2.innerHTML = desc;
+    cell3.innerHTML = start;
+    cell4.innerHTML = date;
+}
