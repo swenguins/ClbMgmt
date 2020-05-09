@@ -291,7 +291,7 @@ function displayEvent(name, desc, start, date){
     cell3.innerHTML = start;
     cell4.innerHTML = date;
 }
-
+//Displays the club in profile
 function displayClub(name, descrip)
 {
 
