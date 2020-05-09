@@ -33,7 +33,7 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.firestore();
 const clubsCollection = database.collection('clubs');
 const auth = firebase.auth();
-
+const user = auth.current_user;
 //Function for creating an account
 function signUp(){
 
@@ -171,15 +171,10 @@ function getClubByName(name) {
     let test = "";
     clubsCollection.where("club_name", "==", name).get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-            console.log(doc.id)
             test = doc.id;
-            console.log(test)
             return test;
         });
-        console.log(test)
-        console.log(returnString)
         returnString = test;
-        console.log(returnString)
         returnClubID(returnString);
     })
 
@@ -195,14 +190,12 @@ function addClickListeners(){
         for (let i = 0 ; i < clubs.length ; i++){
             if (clubs[i].innerHTML == 'Manage'){
                 clubs[i].addEventListener("click", function(){
-                    console.log(clubs[i].parentElement.parentElement.firstElementChild.innerHTML);
                     localStorage['current_club'] = clubs[i].parentElement.parentElement.firstElementChild.innerHTML;
                     window.location.href = "clubinfo.html";
                 })
             }
             else{
                 clubs[i].addEventListener("click", function(){
-                    console.log(clubs[i].parentElement.parentElement.firstElementChild.innerHTML);
                     localStorage['current_club'] = clubs[i].parentElement.parentElement.firstElementChild.innerHTML;
                     window.location.href = "user-club-metrics.html";
                 })
@@ -221,6 +214,27 @@ function addClickListeners(){
         new_event_button.addEventListener('click', function () {
             createEvent();
         })
+    }
+}
+
+function addJoinListeners(){
+    joinButtons = document.getElementsByClassName("joinButton");
+    if (joinButtons.length > 0){
+        for (let i = 0 ; i < joinButtons.length ; i++){
+            joinButtons[i].addEventListener("click", function(){
+                let name = joinButtons[i].parentElement.parentElement.firstElementChild.innerHTML;
+                let desc = joinButtons[i].parentElement.previousElementSibling.innerHTML;
+                displayMyClub(name,desc);
+                getClubByName(name);
+                console.log(localStorage['club_id'])
+                const usersCollection = database.collection('clubs').doc(localStorage['club_id']).collection("users");
+                let user = firebase.auth().currentUser;
+                usersCollection.add({
+                    id : user.uid
+                })
+                joinButtons[i].parentElement.parentElement.innerHTML = "";
+            })
+        }
     }
 }
 
@@ -256,7 +270,7 @@ function searchClub(data){
             var name = doc.data().club_name;
             name = name.toLowerCase();
             if (name.includes(data)) {
-                displayClub(doc.data().club_name,doc.data().description);
+                displayClubSearch(doc.data().club_name,doc.data().description);
             }
         });
     })
@@ -303,7 +317,7 @@ async function clearEventTable() {
     return "resolved";
 }
 //Displays the club in profile
-function displayClub(name, descrip)
+function displayClubSearch(name, descrip)
 {
 
     var table = document.getElementById("tableBody");
@@ -313,5 +327,16 @@ function displayClub(name, descrip)
     var cell3 = row.insertCell(2);
     cell1.innerHTML = name;
     cell2.innerHTML = descrip;
-    cell3.innerHTML = "<a href='#'  class='manageButton'>Join</a>";
+    cell3.innerHTML = "<a href='#'  class='joinButton'>Join</a>";
+    addJoinListeners();
+}
+
+function displayMyClub(name, descrip)
+{
+    var table = document.getElementById("my-club-table");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = name;
+    cell2.innerHTML = descrip;
 }
