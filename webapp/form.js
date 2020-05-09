@@ -242,6 +242,8 @@ function addInputListeners(){
 }
 
 function searchClub(data){
+    var name_lower = doc.data().club_name.toLowerCase();
+    var description_lower = doc.data().description.toLowerCase();
     console.log("here")
     var clubs = [];
     clubsCollection.get().then(function(querySnapshot) {
@@ -251,7 +253,7 @@ function searchClub(data){
             console.log(doc.data().description);
             console.log(doc.data().club_name);
             if (doc.data().club_name.includes(data)) {
-                clubs.add((doc.data().club_name, doc.data().description));
+                clubs.push((name_lower, description_lower));
                 console.log(clubs)
             }
         });
