@@ -314,7 +314,9 @@ function populate_current_event_table(){
                 eventsCollection.get().then(function(querySnapshot) {
                     querySnapshot.forEach(function (doc) {
                         var name = doc.data().event_name;
-                        var desc =doc.data().description;
+                        console.log(name)
+                        var desc = doc.data().description;
+                        console.log(desc)
                         var time = doc.data().start_time;
                         var date = doc.data().date;
                         console.log(date)
@@ -353,20 +355,6 @@ function populate_current_event_table(){
                 })
             });
         })
-
-
-
-
-        var row = current_table.insertRow(0);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-
-        cell1.innerHTML = name;
-        cell2.innerHTML = desc;
-        cell3.innerHTML = date;
-        cell4.innerHTML = start;
     }
 
     function displayEvent(name, desc, start, date){
