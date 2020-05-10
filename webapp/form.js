@@ -6,6 +6,7 @@ window.addEventListener("load", function () {
     addClickListeners();
     addInputListeners();
     populate_current_event_table();
+    populate_owned_clubs_table()
     addCheckInListeners();
     console.log(localStorage['current_club'])
     if (window.location.href.includes("Manage.html") || window.location.href.includes("clubinfo.html")){
@@ -452,4 +453,30 @@ function getUserClubs(){
             })
         });
     })
+}
+
+function populate_owned_clubs_table() { //and your joined clubs
+
+    my_clubs = document.getElementById("my-club-table");
+    if (my_clubs) {
+
+        clubsCollection.get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                var name = doc.data().club_name;
+                var desc = doc.data().description;
+
+                var rowm = my_clubs.insertRow(0);
+                var cell1 = rowm.insertCell(0);
+                var cell2 = rowm.insertCell(1);
+                var cell3 = rowm.insertCell(2);
+
+
+                cell1.innerHTML = name;
+                cell2.innerHTML = desc;
+                cell3.innerHTML =  "<a href='#'  class='manageButton'>Manage</a>";
+            });
+
+
+        })
+    }
 }
