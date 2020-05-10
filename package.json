@@ -1,0 +1,7 @@
+{
+  "name": "ClbMgmt",
+  "version": "1.0.0",
+  "dependencies": {
+    "firebase": "^7.14.3"
+  }
+}

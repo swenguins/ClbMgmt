@@ -1,10 +1,10 @@
 //Script Written by Noah Doyle + Kevin Bullock
 // Your web app's Firebase configuration
 let user_profile_pic = null;
-
 window.addEventListener("load", function () {
     addClickListeners();
     addInputListeners();
+    addChangeListeners();
     populate_current_event_table();
     populate_owned_clubs_table()
     addCheckInListeners();
@@ -40,20 +40,14 @@ const auth = firebase.auth();
 const user = auth.current_user;
 //Function for creating an account
 function signUp(){
-
-    let email = document.getElementById("email");
-    let password = document.getElementById("password");
-
-    if (user_profile_pic){
-        firebase.storage().ref('user-profile-pics/' + user_profile_pic.name).put(user_profile_pic);
-    }
-
-
-
+    let email = document.getElementById("sign-up-email");
+    let password = document.getElementById("sign-up-password");
     const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
     promise.catch(e => alert(e.message));
     //alert("Signed Up");
-    window.location.href = 'signIn.html';
+    promise.then(user => {
+        window.location.href = 'SignIn.html';
+    });
 }
 
 function uploadImage(e) {
@@ -183,6 +177,13 @@ function addClickListeners(){
             createEvent();
         })
     }
+
+    let sign_up_button = document.getElementById("sign-up-button");
+    if (sign_up_button){
+        sign_up_button.addEventListener('click', function () {
+            signUp();
+        })
+    }
 }
 
 function addJoinListeners(){
@@ -229,6 +230,19 @@ function addInputListeners(){
             });
         })
     }
+}
+
+function addChangeListeners() {
+    let upload_profile_pic_button = document.getElementById("profile_img");
+    if (upload_profile_pic_button){
+        upload_profile_pic_button.addEventListener("change", function(e){
+            console.log("here to upload pic")
+            var file = e.target.files[0];
+            var storageRef = firebase.storage().ref('user-profile-image/test');
+            storageRef.put(file);
+        })
+    }
+
 }
 
 function searchClub(data){
