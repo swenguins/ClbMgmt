@@ -6,6 +6,7 @@ window.addEventListener("load", function () {
     addClickListeners();
     addInputListeners();
     populate_current_event_table();
+    addCheckInListeners();
     console.log(localStorage['current_club'])
     if (window.location.href.includes("Manage.html") || window.location.href.includes("clubinfo.html")){
         console.log(localStorage['current_club']);
@@ -300,76 +301,79 @@ function searchEvent(data){
 function populate_current_event_table(){
     var todayDate = new Date();
     current_table = document.getElementById("current-event-table");
-    upcoming_table = document.getElementById("upcoming-event-body");
-    clubsCollection.get().then(function(querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-            const eventsCollection = database.collection('clubs').doc(doc.id).collection("Events");
-            eventsCollection.get().then(function(querySnapshot) {
-                querySnapshot.forEach(function (doc) {
-                    var name = doc.data().event_name;
-                    var desc =doc.data().description;
-                    var time = doc.data().start_time;
-                    var date = doc.data().date;
-                    var arr1 = date.split('-');
-                    var dateTwo = new Date(arr1[2], arr1[1], arr1[0]); //Year, Month, Date
-if(todayDate.setHours(0,0,0,0) == dateTwo.setHours(0,0,0,0)){
-    var rowc = current_table.insertRow(0);
-    var cell1 = rowc.insertCell(0);
-    var cell2 = rowc.insertCell(1);
-    var cell3 = rowc.insertCell(2);
-    var cell4 = rowc.insertCell(3);
-    var cell5 = rowc.insertCell(4);
+    if (current_table){
+        upcoming_table = document.getElementById("upcoming-event-body");
+        clubsCollection.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                const eventsCollection = database.collection('clubs').doc(doc.id).collection("Events");
+                eventsCollection.get().then(function(querySnapshot) {
+                    querySnapshot.forEach(function (doc) {
+                        var name = doc.data().event_name;
+                        var desc =doc.data().description;
+                        var time = doc.data().start_time;
+                        var date = doc.data().date;
+                        var arr1 = date.split('-');
+                        var dateTwo = new Date(arr1[2], arr1[1], arr1[0]); //Year, Month, Date
+                        if(todayDate.setHours(0,0,0,0) == dateTwo.setHours(0,0,0,0)){
+                            var rowc = current_table.insertRow(0);
+                            var cell1 = rowc.insertCell(0);
+                            var cell2 = rowc.insertCell(1);
+                            var cell3 = rowc.insertCell(2);
+                            var cell4 = rowc.insertCell(3);
+                            var cell5 = rowc.insertCell(4);
 
-    cell1.innerHTML = name;
-    cell2.innerHTML = desc;
-    cell3.innerHTML = date;
-    cell4.innerHTML = time;
-    cell5.innerHTML =  "<a href='#'  class='button small'>Join</a>";
-}
-else{
-    var rowu = upcoming_table.insertRow(0);
-    var cell6 = rowu.insertCell(0);
-    var cell7 = rowu.insertCell(1);
-    var cell8 = rowu.insertCell(2);
-    var cell9 = rowu.insertCell(3);
+                            cell1.innerHTML = name;
+                            cell2.innerHTML = desc;
+                            cell3.innerHTML = date;
+                            cell4.innerHTML = time;
+                            cell5.innerHTML =  "<a href='#'  class='button small'>Join</a>";
+                        }
+                        else{
+                            var rowu = upcoming_table.insertRow(0);
+                            var cell6 = rowu.insertCell(0);
+                            var cell7 = rowu.insertCell(1);
+                            var cell8 = rowu.insertCell(2);
+                            var cell9 = rowu.insertCell(3);
 
-    cell6.innerHTML = name;
-    cell7.innerHTML = desc;
-    cell8.innerHTML = date;
-    cell9.innerHTML = time;
-}
-                });
-            })
-        });
-    })
-
-
+                            cell6.innerHTML = name;
+                            cell7.innerHTML = desc;
+                            cell8.innerHTML = date;
+                            cell9.innerHTML = time;
+                        }
+                    });
+                })
+            });
+        })
 
 
-    var row = current_table.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
 
-    cell1.innerHTML = name;
-    cell2.innerHTML = desc;
-    cell3.innerHTML = date;
-    cell4.innerHTML = start;
-}
 
-function displayEvent(name, desc, start, date){
-    event_table = document.getElementById("event-search-table");
-    var row = event_table.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
+        var row = current_table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
 
-    cell1.innerHTML = name;
-    cell2.innerHTML = desc;
-    cell3.innerHTML = date;
-    cell4.innerHTML = start;
+        cell1.innerHTML = name;
+        cell2.innerHTML = desc;
+        cell3.innerHTML = date;
+        cell4.innerHTML = start;
+    }
+
+    function displayEvent(name, desc, start, date){
+        event_table = document.getElementById("event-search-table");
+        var row = event_table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+
+        cell1.innerHTML = name;
+        cell2.innerHTML = desc;
+        cell3.innerHTML = date;
+        cell4.innerHTML = start;
+    }
+
 }
 
 async function clearEventTable() {
@@ -401,4 +405,55 @@ function displayMyClub(name, descrip)
     var cell2 = row.insertCell(1);
     cell1.innerHTML = name;
     cell2.innerHTML = descrip;
+}
+
+function checkIntoEventByName(club_name, event_name,user) {
+    let returnString = "here";
+    let test = "";
+    clubsCollection.where("club_name","==",club_name).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            const eventsCollection = doc.ref.collection("Events");
+            eventsCollection.where("event_name", "==", event_name).get().then(function(querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    doc.ref.collection('checkedIn').add({
+                        user_email : user
+                    })
+                });
+            })
+        });
+    })
+
+}
+
+function addCheckInListeners(){
+    checkInButtons = document.getElementsByClassName("checkInButton");
+    if (checkInButtons.length > 0){
+        for (let i = 0 ; i < checkInButtons.length ; i++){
+            checkInButtons[i].addEventListener("click", function(){
+                let user = firebase.auth().currentUser;
+                let club_name = checkInButtons[i].parentElement.parentElement.firstElementChild.innerHTML;
+                let event_name = checkInButtons[i].parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+                checkIntoEventByName(club_name,event_name, user.email);
+                checkInButtons[i].setAttribute('style', 'background-color: black;');
+            })
+        }
+    }
+}
+
+function getUserClubs(){
+    clubsCollection.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            const eventsCollection = database.collection('clubs').doc(doc.id).collection("Events");
+            eventsCollection.get().then(function(querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    var name = doc.data().event_name;
+                    name = name.toLowerCase();
+                    if (name.includes(data)) {
+                        console.log("adding row")
+                        displayEvent(doc.data().event_name, doc.data().description,doc.data().start_time,doc.data().date);
+                    }
+                });
+            })
+        });
+    })
 }
