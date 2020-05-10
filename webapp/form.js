@@ -5,7 +5,7 @@ var user_profile_pic = null;
 window.addEventListener("load", function () {
     addClickListeners();
     addInputListeners();
-    populate_current_event_table()
+    populate_current_event_table();
     console.log(localStorage['current_club'])
     if (window.location.href.includes("Manage.html") || window.location.href.includes("clubinfo.html")){
         console.log(localStorage['current_club']);
@@ -314,11 +314,11 @@ function populate_current_event_table(){
                     var dateTwo = new Date(arr1[2], arr1[1], arr1[0]); //Year, Month, Date
 if(todayDate.setHours(0,0,0,0) == dateTwo.setHours(0,0,0,0)){
     var rowc = current_table.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
-    var cell5 = row.insertCell(4);
+    var cell1 = rowc.insertCell(0);
+    var cell2 = rowc.insertCell(1);
+    var cell3 = rowc.insertCell(2);
+    var cell4 = rowc.insertCell(3);
+    var cell5 = rowc.insertCell(4);
 
     cell1.innerHTML = name;
     cell2.innerHTML = desc;
@@ -328,10 +328,10 @@ if(todayDate.setHours(0,0,0,0) == dateTwo.setHours(0,0,0,0)){
 }
 else{
     var rowu = upcoming_table.insertRow(0);
-    var cell6 = row.insertCell(0);
-    var cell7 = row.insertCell(1);
-    var cell8 = row.insertCell(2);
-    var cell9 = row.insertCell(3);
+    var cell6 = rowu.insertCell(0);
+    var cell7 = rowu.insertCell(1);
+    var cell8 = rowu.insertCell(2);
+    var cell9 = rowu.insertCell(3);
 
     cell6.innerHTML = name;
     cell7.innerHTML = desc;
