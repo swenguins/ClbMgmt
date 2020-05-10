@@ -309,7 +309,8 @@ function populate_current_event_table(){
         upcoming_table = document.getElementById("upcoming-event-body");
         clubsCollection.get().then(function(querySnapshot) {
             querySnapshot.forEach(function (doc) {
-                const eventsCollection = database.collection('clubs').doc(doc.id).collection("Events");
+                let current_club_name = doc.data().club_name;
+                const eventsCollection = doc.ref.collection("Events");
                 eventsCollection.get().then(function(querySnapshot) {
                     querySnapshot.forEach(function (doc) {
                         var name = doc.data().event_name;
@@ -321,25 +322,28 @@ function populate_current_event_table(){
                         //Year, Month, Date
                         if(today == date){
                             var rowc = current_table.insertRow(0);
-                            var cell1 = rowc.insertCell(0);
-                            var cell2 = rowc.insertCell(1);
-                            var cell3 = rowc.insertCell(2);
-                            var cell4 = rowc.insertCell(3);
-                            var cell5 = rowc.insertCell(4);
-
+                            var cell0 = rowc.insertCell(0);
+                            var cell1 = rowc.insertCell(1);
+                            var cell2 = rowc.insertCell(2);
+                            var cell3 = rowc.insertCell(3);
+                            var cell4 = rowc.insertCell(4);
+                            var cell5 = rowc.insertCell(5);
+                            cell0.innerHTML = current_club_name;
                             cell1.innerHTML = name;
                             cell2.innerHTML = desc;
                             cell3.innerHTML = date;
                             cell4.innerHTML = time;
-                            cell5.innerHTML =  "<a href='#'  class='button small'>Join</a>";
+                            cell5.innerHTML =  "<a href='#'  class='checkInButton'>Check In</a>";
+                            addCheckInListeners();
                         }
                         else{
                             var rowu = upcoming_table.insertRow(0);
-                            var cell6 = rowu.insertCell(0);
-                            var cell7 = rowu.insertCell(1);
-                            var cell8 = rowu.insertCell(2);
-                            var cell9 = rowu.insertCell(3);
-
+                            var cell5 = rowu.insertCell(0)
+                            var cell6 = rowu.insertCell(1);
+                            var cell7 = rowu.insertCell(2);
+                            var cell8 = rowu.insertCell(3);
+                            var cell9 = rowu.insertCell(4);
+                            cell5.innerHTML = current_club_name;
                             cell6.innerHTML = name;
                             cell7.innerHTML = desc;
                             cell8.innerHTML = date;
