@@ -1,4 +1,4 @@
-//Script Written by Noah Doyle
+//Script Written by Noah Doyle + Kevin Bullock
 // Your web app's Firebase configuration
 let user_profile_pic = null;
 
