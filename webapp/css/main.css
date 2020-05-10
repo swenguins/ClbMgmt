@@ -1,0 +1,272 @@
+
+.profile_pic img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+#profiles {
+    display: flex;
+}
+
+#button .signIn .signOut{
+    margin-top: 10px;
+}
+
+#profile_row.row {
+    padding-left: 10vw;
+}
+
+input#email {
+    margin-top: 10px;
+    padding-left: 5vw;
+}
+
+input#password {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 5vw;
+}
+#choose-club-pic {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+}
+
+#choose-club-pic input{
+    margin-top: 15px;
+    background-color: white;
+    width: 20vw;
+    height: 3vh;
+    margin-left: 10px;
+}
+
+#club-create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    width: 50vw;
+    margin: 0 auto;
+}
+
+#club-create input, textarea{
+    background-color: white;
+
+}
+
+#event-creation {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10vw;
+    padding-right: 10vw;
+
+}
+#event-creation {
+    margin-top: 10px;
+    height: 85vh;
+}
+
+#event-btn{
+    width: 10vw;
+    margin-top: 10px;
+}
+#club-create-checks {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-between;
+}
+
+#event-checkin {
+    height: 87vh;
+    padding-left: 5vw;
+    padding-top: 3vh;
+    padding-right: 5vw;
+}
+
+textarea#Description {
+    width: 50vw;
+    border-radius: 5px;
+}
+
+#footer {
+    position: fixed;
+    height: 25px;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 0 0 0;
+}
+
+#footer .copyright li:first-child {
+    position: relative;
+    top : -10px;
+}
+
+.profile-clublist {
+    padding-right: 5vw;
+    padding-left: 5vw;
+}
+
+.profile-eventlist {
+    padding-right: 5vw;
+    padding-left: 5vw;
+}
+
+.profile-welcome {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-welcome img {
+    border-radius: 50%;
+}
+
+div.a{
+    text-align: center;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 2vh;
+}
+
+#login-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#choose-profile-pic {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#login-buttons button {
+    margin: 5px;
+}
+
+input[type="checkbox"] {
+    margin-right: 0px;
+    background-color: white;
+}
+
+#event-creation {
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    padding-right: 10vw;
+    padding-left: 10vw;
+}
+
+#event-creation input {
+    margin-top: 10px;
+}
+
+#event-creation button {
+    width:10vw;
+    margin: 5px auto;
+}
+
+#create-club-nav {
+    width: 16vw;
+    height: 7vh;
+    background-color: #383b43;
+    color: whitesmoke;
+    margin: 10px auto;
+    border-radius: 10px;
+    right: 10vw;
+    top:25vh;
+    position: absolute;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+#past-event-table {
+    width: 40vw;
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+
+#future-event-table {
+    width: 40vw;
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+
+#event-create-button {
+    position: relative;
+    left: 10vw;
+    padding: 2px;
+    background-color: deepskyblue;
+    margin-top: 10px;
+    width: 16vw;
+    height: 4vh;
+    font-size: large;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.club-event-view {
+    margin-top: 1vh;
+}
+
+table tbody tr:nth-child(2n + 1){
+    background-color: #d6feff;
+    border-radius: 5px;
+}
+
+table tbody tr:nth-child(2n){
+    background-color: #a7fafc;
+    border-radius: 5px;
+}
+
+body {
+    background-color: #4fd4ff;
+}
+
+#event-search-name {
+    background-color: #b6faff;
+}
+
+#club-search-name {
+    background-color: #b6faff;
+}
+
+#event-creation input {
+    background-color: white;
+}
+
+#event-time-inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+
+#choose-event-pic {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+#event-attendance-inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: baseline;
+}

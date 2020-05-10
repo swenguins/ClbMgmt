@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+	Team Penguin
+This is the place for users to manage their Clubs (MAY NOT BE USED IT WOULD PROBABLY BE EASIER TO USE THE MANAGE SECTION ON THE PROFILE PAGE)
+-->
+<html lang="en">
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <meta charset="UTF-8">
+    <title>Join</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+    <script src="form.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <noscript>
+        <link rel="stylesheet" href="css/skel.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-xlarge.css" />
+    </noscript>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="EventCheckIn.html">
+            <img src="images/igloo_logo.png" alt="Italian Trulli" style="width:78px; height: 65px; margin-top: 2vh">
+        </a></h1>
+        <nav id="nav">
+            <ul>
+                <li><a href="EventCheckIn.html">Home</a></li>
+                <li><a href="ClubPage.html">Manage Your Clubs</a></li>
+                <li><a href="EditAccount.html">Manage Your Account</a></li>
+                <li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
+            </ul>
+        </nav>
+    </header>
+
+        <!-- Form -->
+        <div id="event-create-button"><a href="CreateEvent.html">Create New Event</a></div>
+        <h3 class = "club-event-view">Upcoming Events</h3>
+        <div class="table-wrapper" id="future-event-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Event Date</th>
+                    <th>Event Start Time</th>
+
+                </tr>
+                </thead>
+                <tbody id="future-event-body">
+
+
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="club-event-view">Past Events</h3>
+        <div class="table-wrapper" id="past-event-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Event Date</th>
+                    <th>Event Start Time</th>
+
+                </tr>
+                </thead>
+                <tbody id="past-event-body">
+
+
+                </tbody>
+            </table>
+        </div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="copyright">
+        <li>&copy;Igloo. All rights reserved.</li>
+    </ul>
+</footer>
+
+</body>
+</html>

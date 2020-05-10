@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+	Team Penguin: Noah Doyle 4/12/20
+				  Kevin Bullock
+This page is a test profile
+-->
+<html lang="en">
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-storage.js"></script>
+    <script src="form.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <noscript>
+        <link rel="stylesheet" href="css/skel.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-xlarge.css" />
+    </noscript>
+</head>
+
+
+<!-- Header -->
+
+<header id="header">
+    <h1><a href="EventCheckIn.html">
+        <img src="images/igloo_logo.png" alt="Italian Trulli" style="width:78px; height: 65px; margin-top: 2vh">
+    </a></h1>
+    <nav id="nav">
+        <ul>
+            <li><a href="EventCheckIn.html">Home</a></li>
+            <li><a href="ClubPage.html">Manage Your Clubs</a></li>
+            <li><a href="EditAccount.html">Manage Your Account</a></li>
+            <li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
+        </ul>
+
+
+    </nav>
+</header>
+
+<!-- Main -->
+
+
+<div class="profile-welcome">
+    <img src="images/profile_placeholder.gif" alt="" />
+
+    <h2 id ="welcome"> </h2>
+    <p>Events are listed below.</p>
+</div>
+<div class = "profile-eventlist">
+    <!-- Table -->
+    <h3>Current Events</h3>
+    <h4></h4>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>Club Name</th>
+                <th>Event Name</th>
+                <th>Description</th>
+                <th>Event Date</th>
+                <th>Event Start Time</th>
+                <th>CheckIn</th>
+            </tr>
+            </thead>
+            <tbody id="current-event-table">
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- This table should get populated with all of the users owned clubs, it currently has placeholder data-->
+    <h3>Upcoming Events</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>Club Name</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Event Date</th>
+                <th>Event Start Time</th>
+
+            </tr>
+            </thead>
+            <tbody id="upcoming-event-body">
+
+
+            </tbody>
+        </table>
+
+        <h3>Search For Events</h3>
+        <div class="table-wrapper">
+            <tr style = "margin-bottom: 10px; ">
+                <td>Enter an event ID to search for an event.</td>
+                <td>
+                    <label for="event-search-name"></label>
+                    <input type="text" name="Event Name" id="event-search-name" value="" placeholder="Search Event ID"/>
+                </td>
+            </tr>
+            <table>
+                <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Description</th>
+                    <th>Event Date</th>
+                    <th>Event Start Time</th>
+                </tr>
+                </thead>
+                <tbody id = "event-search-table">
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <ul class="copyright">
+        <li>&copy;Igloo. All rights reserved.</li>
+    </ul>
+</footer>
+
+</html>
