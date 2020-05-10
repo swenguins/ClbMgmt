@@ -6,6 +6,7 @@ window.addEventListener("load", function () {
     addInputListeners();
     addChangeListeners();
     populate_current_event_table();
+    populate_events_attended_table();
     populate_owned_clubs_table();
     populate_membership_table();
     addCheckInListeners();
@@ -564,4 +565,30 @@ function addEventRowFuture(name,desc,date,time) {
     cell1.innerHTML = desc;
     cell2.innerHTML = date;
     cell3.innerHTML = time;
+}
+
+function populate_events_attended_table(){
+    let attended_table = document.getElementById("attended-events-table");
+    if (attended_table){
+        clubsCollection.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                let current_club_name = doc.data().club_name;
+                const eventsCollection = doc.ref.collection("Events");
+                eventsCollection.get().then(function(querySnapshot) {
+                    querySnapshot.forEach(function (doc) {
+                        let name = doc.data().event_name;
+                        let desc = doc.data().description;
+                        let date = doc.data().date;
+                        let row = attended_table.insertRow(0);
+                        let cell0 = row.insertCell(0);
+                        let cell1 = row.insertCell(1);
+                        let cell2 = row.insertCell(2);
+                        cell0.innerHTML = name;
+                        cell1.innerHTML = desc;
+                        cell2.innerHTML = date;
+                    });
+                })
+            });
+        })
+    }
 }
