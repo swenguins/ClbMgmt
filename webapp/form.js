@@ -48,9 +48,11 @@ function signUp(){
     }
 
 
+
     const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
     promise.catch(e => alert(e.message));
     //alert("Signed Up");
+    window.location.href = 'signIn.html';
 }
 
 function uploadImage(e) {
@@ -474,6 +476,7 @@ function populate_owned_clubs_table() { //and your joined clubs
                 cell1.innerHTML = name;
                 cell2.innerHTML = desc;
                 cell3.innerHTML =  "<a href='#'  class='manageButton'>Manage</a>";
+                addClickListeners();
             });
 
 
