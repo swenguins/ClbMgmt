@@ -68,24 +68,17 @@ This is where a user would create a Club (MAY NOT BE USED, PROBABLY EASIER TO US
 							<br>
 							<label for="New-Club-Description"></label>
                             <textarea id="New-Club-Description" placeholder="Description"></textarea>
-							<div id= "club-create-checks">
-								<input type="checkbox" id="Private">
-								<label for="Private">Private</label>
-								<input type="checkbox" id="Regional">
-								<label for="Regional">Regional</label>
-								<input type="checkbox" id="Max Users">
-								<label for="Max Users">Max Users</label>
-							</div>
-
-							<div id = "choose-profile-pic">
-								<label for = "profile_img">Profile Image</label>
-								<input type="file" id = "profile_img" onchange="uploadImage(e)" />
+							<input type = "checkbox" id="public">
+							<label for="public">Public:</label>
+							<div id = "choose-club-pic">
+								<label for = "club_img">Club Banner Image</label>
+								<input type="file" id = "club_img" />
 							</div>
 
                             <!--<button id="submit">Submit</button>-->
 
 							<div id = "club-buttons">
-								<button type="button" class="button" id="addBtn">Submit</button>
+								<button type="button" class="button" id="addBtn" style="margin-top: 15px">Submit</button>
 							</div>
 
 							

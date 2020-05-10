@@ -27,6 +27,20 @@ input#password {
     margin-bottom: 10px;
     padding-left: 5vw;
 }
+#choose-club-pic {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+}
+
+#choose-club-pic input{
+    margin-top: 15px;
+    background-color: white;
+    width: 20vw;
+    height: 3vh;
+    margin-left: 10px;
+}
 
 #club-create {
     display: flex;
@@ -36,6 +50,12 @@ input#password {
     width: 50vw;
     margin: 0 auto;
 }
+
+#club-create input, textarea{
+    background-color: white;
+
+}
+
 #event-creation {
     height: 50vh;
     display: flex;
@@ -141,6 +161,7 @@ div.a{
 
 input[type="checkbox"] {
     margin-right: 0px;
+    background-color: white;
 }
 
 #event-creation {
@@ -156,12 +177,12 @@ input[type="checkbox"] {
 }
 
 #event-creation button {
-    margin-top: 5px;
     width:10vw;
+    margin: 5px auto;
 }
 
 #create-club-nav {
-    width: 15vw;
+    width: 16vw;
     height: 7vh;
     background-color: #383b43;
     color: whitesmoke;
@@ -223,4 +244,29 @@ body {
 
 #club-search-name {
     background-color: #b6faff;
+}
+
+#event-creation input {
+    background-color: white;
+}
+
+#event-time-inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+
+#choose-event-pic {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+#event-attendance-inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: baseline;
 }

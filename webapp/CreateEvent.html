@@ -52,26 +52,36 @@ This is the page where you create an event
 				</ul>
 			</nav>
 		</header>
-<!-- Banner -->
-			<!--<section id="banner">
-				<h2></h2>
-				<p></p>
-				<ul class="actions">
-					
-				</ul>
-			</section>-->
-<!-- Form -->
-						<section id = "event-creation">
-							<label for="New-Event-Name">Choose a name for your Event:</label>
-							<input type="text" id="New-Event-Name" placeholder="Event Name">
-							<label for="New-Event-Description">Make a description for your Event:</label>
-							<input type="text" id="New-Event-Description" placeholder="Description">
 
-							<label for="meeting-time">Choose a time for your Event:</label>
-							<input type="datetime-local" id="meeting-time"
-								   name="meeting-time">
-							<button type="button" class="button" id="event-btn">Submit</button>
-						</section>
+		<section id = "event-creation">
+			<label for="New-Event-Name">Choose a name for your Event:</label>
+			<input type="text" id="New-Event-Name" placeholder="Event Name">
+			<label for="New-Event-Description">Make a description for your Event:</label>
+			<input type="text" id="New-Event-Description" placeholder="Description">
+			<div id = "event-time-inputs">
+				<label for="meeting-date">Choose a date for your Event:</label>
+				<input type="date" id="meeting-date" name="meeting-time">
+				<label for="meeting-start-time">Choose a start time</label>
+				<input type = "time" id="meeting-start-time">
+				<label for="meeting-end-time">Choose an end time</label>
+				<input type = "time" id="meeting-end-time">
+			</div>
+			<h3> Optional </h3>
+			<div id = "choose-event-pic">
+				<label for = "event_img" style="margin-right: 5px">Event Image</label>
+				<input type="file" id = "event_img" >
+			</div>
+
+			<div id = "event-attendance-inputs">
+				<label for="max-attendance">Max Attendance:</label>
+				<input type="number" id="max-attendance" name="meeting-time">
+				<label for="expected-attendance">Expected Attendance:</label>
+				<input type = "number" id="expected-attendance">
+				<input type = "checkbox" id="private-event">
+				<label for="private-event">Private Event:</label>
+			</div>
+			<button type="button" class="button" id="event-btn">Submit</button>
+		</section>
 
 		<footer id="footer">
 			<ul class="copyright">

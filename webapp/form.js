@@ -6,7 +6,8 @@ window.addEventListener("load", function () {
     addInputListeners();
     addChangeListeners();
     populate_current_event_table();
-    populate_owned_clubs_table()
+    populate_owned_clubs_table();
+    populate_membership_table();
     addCheckInListeners();
     club_event_table();
     console.log(localStorage['current_club'])
@@ -50,14 +51,6 @@ function signUp(){
     });
 }
 
-function uploadImage(e) {
-    e.preventDefault();
-    user_profile_pic = e.target.files[0];
-    let image = document.getElementById("profile_img_preview");
-    image.src = URL.createObjectURL(e.target.files[0]);
-    console.log(user_profile_pic);
-}
-
 //Signs into your account.
 function signIn(){
 
@@ -99,17 +92,9 @@ auth.onAuthStateChanged(function(user){
 
     user = firebase.auth().currentUser;//This saves the users information so you can switch html files and still have that info.
     let email = user.email;
-
-
-
-
     if(user){
-
-//User Is signed in
         let user = firebase.auth().currentUser;
-        email = user.email; //creates a variable to store the users email. This can be done similarly with any of the users info, in this loop.
-        //document.getElementById("welcome").innerHTML = "Welcome User : " + email;
-
+        email = user.email; //creates a variable to store the users email. This can be done similarly with any of the users info, in this loop
     }else{
         //no user is signed in
         alert("No Active User");
@@ -123,15 +108,19 @@ function createEvent() {
     console.log(eventsCollection)
     let eventName = document.getElementById("New-Event-Name");
     let description = document.getElementById("New-Event-Description");
-    let date = document.getElementById("meeting-time");
-    let dates = date.value.split("T");
-    let time = dates[1];
-    let day = dates[0];
+    let date = document.getElementById("meeting-date");
+    let start_time = document.getElementById("meeting-start-time");
+    let end_time = document.getElementById("meeting-end-time");
+    let max_attendees = document.getElementById("max-attendance");
+    let expected_attendees = document.getElementById("expected-attendance");
     eventsCollection.add({
         event_name: eventName.value,
         description: description.value,
-        date: day,
-        start_time: time
+        date: date.value,
+        start_time: start_time.value,
+        end_time: end_time.value,
+        max_attendees: max_attendees.value,
+        expected_attendees: expected_attendees
     }).then(user => {
         window.location.href = 'ManageClub.html';
     });
@@ -237,12 +226,31 @@ function addChangeListeners() {
     if (upload_profile_pic_button){
         upload_profile_pic_button.addEventListener("change", function(e){
             console.log("here to upload pic")
-            var file = e.target.files[0];
-            var storageRef = firebase.storage().ref('user-profile-image/test');
+            let file = e.target.files[0];
+            let storageRef = firebase.storage().ref('user-profile-image/'+user.uid);
             storageRef.put(file);
         })
     }
 
+    let upload_event_pic_button = document.getElementById("event_img");
+    if (upload_event_pic_button){
+        upload_event_pic_button.addEventListener("change", function(e){
+            console.log("here to upload pic")
+            let file = e.target.files[0];
+            let storageRef = firebase.storage().ref('event-image/'+"event1");
+            storageRef.put(file);
+        })
+    }
+
+    let upload_club_pic_button = document.getElementById("club_img");
+    if (upload_club_pic_button){
+        upload_club_pic_button.addEventListener("change", function(e){
+            console.log("here to upload pic")
+            let file = e.target.files[0];
+            let storageRef = firebase.storage().ref('club-profile-image/'+"event1");
+            storageRef.put(file);
+        })
+    }
 }
 
 function searchClub(data){
@@ -432,6 +440,33 @@ function getUserClubs(){
 
 function populate_owned_clubs_table() { //and your joined clubs
 
+    let owned_clubs = document.getElementById("owned-club-table");
+    if (owned_clubs) {
+
+        clubsCollection.get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                let name = doc.data().club_name;
+                let desc = doc.data().description;
+
+                let row = owned_clubs.insertRow(0);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                let cell3 = row.insertCell(2);
+
+
+                cell1.innerHTML = name;
+                cell2.innerHTML = desc;
+                cell3.innerHTML =  "<a href='#'  class='manageButton'>Manage</a>";
+                addClickListeners();
+            });
+
+
+        })
+    }
+}
+
+function populate_membership_table() { //and your joined clubs
+
     let my_clubs = document.getElementById("my-club-table");
     if (my_clubs) {
 
@@ -440,15 +475,15 @@ function populate_owned_clubs_table() { //and your joined clubs
                 let name = doc.data().club_name;
                 let desc = doc.data().description;
 
-                let rowm = my_clubs.insertRow(0);
-                let cell1 = rowm.insertCell(0);
-                let cell2 = rowm.insertCell(1);
-                let cell3 = rowm.insertCell(2);
+                let row = my_clubs.insertRow(0);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                let cell3 = row.insertCell(2);
 
 
                 cell1.innerHTML = name;
                 cell2.innerHTML = desc;
-                cell3.innerHTML =  "<a href='#'  class='manageButton'>Manage</a>";
+                cell3.innerHTML =  "<a href='#'  class='manageButton'>Manage Membership</a>";
                 addClickListeners();
             });
 
