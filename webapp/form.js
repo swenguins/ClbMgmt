@@ -164,8 +164,8 @@ function createEvent() {
         description: description.value,
         date: day,
         start_time: time
-    });
-    ID.then(window.location.href = 'clubinfo.html');
+    }).then(window.location.href = 'clubinfo.html');
+
 }
 
 function getClubByName(name) {
@@ -299,7 +299,11 @@ function searchEvent(data){
 }
 
 function populate_current_event_table(){
-    var todayDate = new Date();
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
     current_table = document.getElementById("current-event-table");
     if (current_table){
         upcoming_table = document.getElementById("upcoming-event-body");
@@ -312,9 +316,10 @@ function populate_current_event_table(){
                         var desc =doc.data().description;
                         var time = doc.data().start_time;
                         var date = doc.data().date;
-                        var arr1 = date.split('-');
-                        var dateTwo = new Date(arr1[2], arr1[1], arr1[0]); //Year, Month, Date
-                        if(todayDate.setHours(0,0,0,0) == dateTwo.setHours(0,0,0,0)){
+                        console.log(date)
+                        console.log(today)
+                        //Year, Month, Date
+                        if(today == date){
                             var rowc = current_table.insertRow(0);
                             var cell1 = rowc.insertCell(0);
                             var cell2 = rowc.insertCell(1);
@@ -385,7 +390,6 @@ async function clearEventTable() {
 //Displays the club in profile
 function displayClubSearch(name, descrip)
 {
-
     var table = document.getElementById("tableBody");
     var row = table.insertRow(0);
     var cell1 = row.insertCell(0);
