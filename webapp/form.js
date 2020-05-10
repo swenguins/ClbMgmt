@@ -7,6 +7,7 @@ window.addEventListener("load", function () {
     addInputListeners();
     populate_current_event_table();
     addCheckInListeners();
+    club_event_table();
     console.log(localStorage['current_club'])
     if (window.location.href.includes("Manage.html") || window.location.href.includes("clubinfo.html")){
         console.log(localStorage['current_club']);
@@ -153,18 +154,20 @@ function showUserDetails(){
 function createEvent() {
     const eventsCollection = database.collection('clubs').doc(localStorage['club_id']).collection("Events");
     console.log(eventsCollection)
-    var eventName = document.getElementById("New-Event-Name");
-    var description = document.getElementById("New-Event-Description");
-    var date = document.getElementById("meeting-time");
-    var dates = date.value.split("T");
-    var time = dates[1];
-    var day = dates[0];
-    const ID = eventsCollection.add({
+    let eventName = document.getElementById("New-Event-Name");
+    let description = document.getElementById("New-Event-Description");
+    let date = document.getElementById("meeting-time");
+    let dates = date.value.split("T");
+    let time = dates[1];
+    let day = dates[0];
+    eventsCollection.add({
         event_name: eventName.value,
         description: description.value,
         date: day,
         start_time: time
-    }).then(window.location.href = 'clubinfo.html');
+    }).then(user => {
+        window.location.href = 'clubinfo.html';
+    });
 
 }
 
@@ -452,4 +455,79 @@ function getUserClubs(){
             })
         });
     })
+}
+
+function club_event_table(){
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    let td_day = today.getDate();
+    let td_month = today.getMonth() + 1;
+    let td_year  = parseInt(today.getFullYear());
+    today = yyyy + '-' + mm + '-' + dd;
+    future_table = document.getElementById("future-event-body");
+    if (future_table){
+        past_table = document.getElementById("past-event-body");
+        clubsCollection.where("club_name","==",localStorage['current_club']).get().then(function(querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                let current_club_name = doc.data().club_name;
+                const eventsCollection = doc.ref.collection("Events");
+                eventsCollection.get().then(function(querySnapshot) {
+                    querySnapshot.forEach(function (doc) {
+                        var name = doc.data().event_name;
+                        var desc = doc.data().description;
+                        var time = doc.data().start_time;
+                        var date = doc.data().date;
+                        let ev_date = date.split("-");
+                        let ev_day = ev_date[2];
+                        let ev_month = ev_date[1];
+                        let ev_year = ev_date[0];
+                        if (ev_year)
+                        console.log(today)
+                        //Year, Month, Date
+                        if(ev_year < td_year){
+                            addEventRowPast(name,desc,date,time);
+                        }
+                        else if (ev_month < td_month){
+                            addEventRowPast(name,desc,date,time);
+                        }
+                        else if (ev_day < td_day){
+                            addEventRowPast(name,desc,date,time);
+                        }
+                        else {
+                            addEventRowFuture(name,desc,date,time);
+                        }
+
+                    });
+                })
+            });
+        })
+    }
+}
+
+function addEventRowPast(name,desc,date,time){
+    let past_table = document.getElementById("past-event-body");
+    var rowc = past_table.insertRow(0);
+    var cell0 = rowc.insertCell(0);
+    var cell1 = rowc.insertCell(1);
+    var cell2 = rowc.insertCell(2);
+    var cell3 = rowc.insertCell(3);
+    cell0.innerHTML = name;
+    cell1.innerHTML = desc;
+    cell2.innerHTML = date;
+    cell3.innerHTML = time;
+}
+
+function addEventRowFuture(name,desc,date,time) {
+    let future_table = document.getElementById("future-event-body");
+    var rowc = future_table.insertRow(0);
+    var cell0 = rowc.insertCell(0);
+    var cell1 = rowc.insertCell(1);
+    var cell2 = rowc.insertCell(2);
+    var cell3 = rowc.insertCell(3);
+    cell0.innerHTML = name;
+    cell1.innerHTML = desc;
+    cell2.innerHTML = date;
+    cell3.innerHTML = time;
 }
