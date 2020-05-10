@@ -204,3 +204,25 @@ input[type="checkbox"] {
 .club-event-view {
     margin-top: 1vh;
 }
+
+table tbody tr:nth-child(2n + 1){
+    background-color: #d6feff;
+    border-radius: 5px;
+}
+
+table tbody tr:nth-child(2n){
+    background-color: #a7fafc;
+    border-radius: 5px;
+}
+
+body {
+    background-color: #4fd4ff;
+}
+
+#event-search-name {
+    background-color: #b6faff;
+}
+
+#club-search-name {
+    background-color: #b6faff;
+}
