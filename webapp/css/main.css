@@ -371,6 +371,7 @@ body {
     border: 2px solid black;
     height: 5vh;
     cursor: pointer;
+    margin-top: 15vh;
 }
 
 #Club-Registration-Layout {
@@ -390,4 +391,54 @@ body {
 #event_img_preview {
     height: 200px;
     width: 200px;
+}
+
+.eventPreviewWithImage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.eventPreviewIMG {
+    height: 200px;
+    width: 250px;
+    padding-right: 3vw;
+}
+
+.eventPreviewText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 3vw;
+    font-size: large;
+}
+
+.eventPreviewDate{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 3vw;
+}
+
+.eventPreviewWithoutImage {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    padding-bottom: 3vh;
+    padding-top: 3vh;
+}
+
+#upcoming-events {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+
+}
+
+.previewTitle {
+    font-size: x-large;
+    font-style: italic;
+    font-family: fantasy;
 }
