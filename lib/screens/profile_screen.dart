@@ -42,10 +42,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[ 
+          
+          Icon(Icons.account_circle,size: 250),
+
           SizedBox(
             width: 200.0,
             child: Text(
-              'Welcome,\n' + loggedInUser.email,
+              'Welcome, demoUser!\n',
+              textAlign: TextAlign.center,
               style: TextStyle(
                         fontSize: 40.0,
                         fontWeight: FontWeight.w900,
