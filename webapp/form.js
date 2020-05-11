@@ -1,27 +1,5 @@
 //Script Written by Noah Doyle + Kevin Bullock
 // Your web app's Firebase configuration
-let user_profile_pic = null;
-window.addEventListener("load", function () {
-    addClickListeners();
-    addInputListeners();
-    addChangeListeners();
-    populate_current_event_table();
-    populate_events_attended_table();
-    populate_owned_clubs_table();
-    populate_membership_table();
-    addCheckInListeners();
-    club_event_table();
-    console.log(localStorage['current_club'])
-    if (window.location.href.includes("CreateEvent.html") || window.location.href.includes("ManageClub.html")){
-        console.log(localStorage['current_club']);
-        getClubByName(localStorage['current_club']);
-        console.log(localStorage['club_id'])
-    }
-    else {
-        //localStorage['current_club'] = null;
-    }
-})
-
 
 const firebaseConfig = {
 //firebase config stuff
@@ -39,7 +17,39 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.firestore();
 const clubsCollection = database.collection('clubs');
 const auth = firebase.auth();
-const user = auth.current_user;
+
+//This checks to see if the users login state has changed, or if there is a user at all NONSTOP IT LOOPS, this is from firebase
+auth.onAuthStateChanged(function(user){
+    if(user){
+        //creates a variable to store the users email. This can be done similarly with any of the users info, in this loop
+    }else{
+        //no user is signed in
+        alert("No Active User");
+    }
+});
+
+window.addEventListener("load", function () {
+    addClickListeners();
+    addInputListeners();
+    addChangeListeners();
+    populate_current_event_table();
+    populate_events_attended_table();
+    populate_owned_clubs_table();
+    populate_membership_table();
+    addCheckInListeners();
+    club_event_table();
+    getUserProfilePic();
+    console.log(localStorage['current_club'])
+    if (window.location.href.includes("CreateEvent.html") || window.location.href.includes("ManageClub.html")){
+        console.log(localStorage['current_club']);
+        getClubByName(localStorage['current_club']);
+        console.log(localStorage['club_id'])
+    }
+    else {
+        //localStorage['current_club'] = null;
+    }
+})
+
 //Function for creating an account
 function signUp(){
     let email = document.getElementById("sign-up-email");
@@ -87,22 +97,6 @@ function createClub(){
         window.location.href = 'ClubPage.html';
     });
 }
-
-//This checks to see if the users login state has changed, or if there is a user at all NONSTOP IT LOOPS, this is from firebase
-auth.onAuthStateChanged(function(user){
-
-    user = firebase.auth().currentUser;//This saves the users information so you can switch html files and still have that info.
-    let email = user.email;
-    if(user){
-        let user = firebase.auth().currentUser;
-        email = user.email; //creates a variable to store the users email. This can be done similarly with any of the users info, in this loop
-    }else{
-        //no user is signed in
-        alert("No Active User");
-
-    }
-
-});
 
 function createEvent() {
     const eventsCollection = database.collection('clubs').doc(localStorage['club_id']).collection("Events");
@@ -226,10 +220,16 @@ function addChangeListeners() {
     let upload_profile_pic_button = document.getElementById("profile_img");
     if (upload_profile_pic_button){
         upload_profile_pic_button.addEventListener("change", function(e){
-            console.log("here to upload pic")
+            let preview = document.getElementById("account-pic");
+            console.log()
             let file = e.target.files[0];
-            let storageRef = firebase.storage().ref('user-profile-image/'+user.uid);
-            storageRef.put(file);
+            preview.src = URL.createObjectURL(file);
+            let storageRef = firebase.storage().ref('user-profile-image/'+firebase.auth().currentUser.uid);
+            storageRef.delete().then(function () {
+                storageRef.put(file);
+            }).catch(function(error) {
+                storageRef.put(file);
+            });
         })
     }
 
@@ -414,8 +414,10 @@ function addCheckInListeners(){
                 let user = firebase.auth().currentUser;
                 let club_name = checkInButtons[i].parentElement.parentElement.firstElementChild.innerHTML;
                 let event_name = checkInButtons[i].parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
-                checkIntoEventByName(club_name,event_name, user.email);
-                checkInButtons[i].setAttribute('style', 'background-color: navy;');
+                checkIntoEventByName(club_name,event_name, user.uid);
+                checkInButtons[i].setAttribute('checkedIn', "true");
+                checkInButtons[i].innerHTML = "Checked In";
+                checkInButtons[i].removeEventListener("click",this);
             })
         }
     }
@@ -590,5 +592,28 @@ function populate_events_attended_table(){
                 })
             });
         })
+    }
+}
+
+function getUserProfilePic(){
+    let pic  = document.getElementById("account-pic");
+    if (pic){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                console.log("here")
+                let storageRef = firebase.storage().ref().child("user-profile-image/"+user.uid);
+
+                storageRef.getDownloadURL().then(function(url) {
+                    console.log("here1")
+                    pic.src = url;
+                    console.log(url)
+                }).catch(function(error) {
+
+                });
+            } else {
+                // No user is signed in.
+            }
+        });
+
     }
 }

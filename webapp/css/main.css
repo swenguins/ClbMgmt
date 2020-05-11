@@ -127,6 +127,10 @@ textarea#Description {
 
 .profile-welcome img {
     border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left: 50px;
 }
 
 div.a{
@@ -182,14 +186,14 @@ input[type="checkbox"] {
 }
 
 #create-club-nav {
-    width: 16vw;
+    width: 17vw;
     height: 7vh;
     background-color: #383b43;
     color: whitesmoke;
     margin: 10px auto;
     border-radius: 10px;
     right: 10vw;
-    top:25vh;
+    top:15vh;
     position: absolute;
     font-size: x-large;
     cursor: pointer;
@@ -271,19 +275,42 @@ body {
     align-items: baseline;
 }
 
+#Edit-Account-Layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#user-info-text {
+    font-size: large;
+    margin-right: 1vw;
+}
+
+#user-info-text div{
+    margin-top: 5vh;
+}
+
+#user-info img{
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
 #club-user-data {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 40vw;
-    height: 55vh;
     overflow: scroll;
 }
 #club-info {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
-    padding-right: 5vw;
     align-items: center;
 }
 
@@ -301,4 +328,52 @@ body {
 #club-info img{
     width: 200px;
     height: 200px;
+    border-radius: 50%;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+#Manage-Club-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#club-info-update {
+    display: flex;
+    flex-direction: column;
+}
+
+#club-pic {
+    position: inherit;
+    margin: 10px auto;
+    width: 50%;
+    border-radius: 50%;
+}
+
+.checkInButton[checkedin="true"]{
+    background-color: darkblue;
+    color: white;
+    border-radius: 5px;
+    border:1px solid black;
+    padding: 1px;
+    cursor: default;
+    text-decoration: none;
+}
+
+#leave-club {
+    background-color: tomato;
+    border-radius: 10px;
+    border: 2px solid black;
+    height: 5vh;
+    cursor: pointer;
+}
+
+#Club-Registration-Layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }

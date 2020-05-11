@@ -45,40 +45,64 @@ This is the place for users to manage their Clubs (MAY NOT BE USED IT WOULD PROB
     </a></h1>
     <nav id="nav">
         <ul>
-            <li><a href="EventCheckIn.html">Home</a></li>
-            <li><a href="ClubPage.html">Manage Your Clubs</a></li>
-            <li><a href="EditAccount.html">Manage Your Account</a></li>
+            <li><a href="EventCheckIn.html">Events</a></li>
+            <li><a href="ClubPage.html">Clubs</a></li>
+            <li><a href="EditAccount.html">Account</a></li>
             <li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
         </ul>
     </nav>
 </header>
-<div id ="club-info">
-    <img src="images/profile_placeholder.gif" alt="" />
-    <div id="club-info-text">
-        <div id="club-name">Club Name Will Go Here</div>
-        <div id="club-description">Club Description Will Go Here</div>
+<div id="Edit-Account-Layout">
+    <div id ="user-info">
+        <img id ="account-pic" src="" alt="" />
+        <div id = "choose-profile-pic">
+            <label for = "profile_img" style="margin-right: 5px">Profile Image</label>
+            <input type="file" id = "profile_img" >
+        </div>
+        <div id="user-info-text">
+            <div id="user-name">Username Will Go Here</div>
+            <div id="user-email">Email Will Go Here</div>
+        </div>
     </div>
-    <button id = "leave-club"style="height: 5vh">Leave Club</button>
-</div>
-<div id = "club-user-data">
-    <!-- THIS IS PLACEHOLDER DATA!!!!! -->
-    <h3>Events You've Attended</h3>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-            <tr>
-                <th>Event Name</th>
-                <th>Description</th>
-                <th>Event Date</th>
-            </tr>
-            </thead>
-            <tbody id="attended-events-table">
+    <div>
+        <div id = "club-user-data">
+            <h3 style="padding-left: 7vw">Events You're Registered For</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Description</th>
+                        <th>Event Date</th>
+                    </tr>
+                    </thead>
+                    <tbody id="registered-events-table">
 
 
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+            </div>
+            <h3 style="padding-left: 7vw">Events You've Attended</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Description</th>
+                        <th>Event Date</th>
+                    </tr>
+                    </thead>
+                    <tbody id="attended-events-table">
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
 </div>
+
 <footer id="footer">
     <ul class="copyright">
         <li>&copy;Igloo. All rights reserved.</li>
@@ -87,3 +111,4 @@ This is the place for users to manage their Clubs (MAY NOT BE USED IT WOULD PROB
 
 </body>
 </html>
+

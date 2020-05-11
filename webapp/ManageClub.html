@@ -45,53 +45,68 @@ This is the place for users to manage their Clubs (MAY NOT BE USED IT WOULD PROB
         </a></h1>
         <nav id="nav">
             <ul>
-                <li><a href="EventCheckIn.html">Home</a></li>
-                <li><a href="ClubPage.html">Manage Your Clubs</a></li>
-                <li><a href="EditAccount.html">Manage Your Account</a></li>
+                <li><a href="EventCheckIn.html">Events</a></li>
+                <li><a href="ClubPage.html">Clubs</a></li>
+                <li><a href="EditAccount.html">Account</a></li>
                 <li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
             </ul>
         </nav>
     </header>
-
+    <div id="Manage-Club-layout">
         <!-- Form -->
-        <div id="event-create-button"><a href="CreateEvent.html">Create New Event</a></div>
-        <h3 class = "club-event-view">Upcoming Events</h3>
-        <div class="table-wrapper" id="future-event-table">
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Event Date</th>
-                    <th>Event Start Time</th>
+        <div>
+            <div id="event-create-button"><a href="CreateEvent.html">Create New Event</a></div>
+            <h3 class = "club-event-view">Upcoming Events</h3>
+            <div class="table-wrapper" id="future-event-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Event Date</th>
+                        <th>Event Start Time</th>
 
-                </tr>
-                </thead>
-                <tbody id="future-event-body">
+                    </tr>
+                    </thead>
+                    <tbody id="future-event-body">
 
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="club-event-view">Past Events</h3>
+            <div class="table-wrapper" id="past-event-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Event Date</th>
+                        <th>Event Start Time</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="past-event-body">
+
+
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <div id = club-info-update>
+            <img id ="club-pic" src="images/profile_placeholder.gif" alt="" />
+            <div id = "choose-profile-pic">
+                <label for = "club_img" style="margin-right: 5px">Profile Image</label>
+                <input type="file" id = "club_img" >
+            </div>
+            <input type="text" id = "club-name-edit" placeholder = "Club Name" style="margin-bottom: 3vh;background-color: white; text-align: center"></input>
+            <input type="text" id = "club-description-edit" placeholder="Club Description" style="margin-bottom: 3vh;background-color: white; text-align: center"></input>
+            <button id = "edit-club-info-button" style="width:33%; margin: 5px auto;">Save Changes</button>
 
-        <h3 class="club-event-view">Past Events</h3>
-        <div class="table-wrapper" id="past-event-table">
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Event Date</th>
-                    <th>Event Start Time</th>
-
-                </tr>
-                </thead>
-                <tbody id="past-event-body">
-
-
-                </tbody>
-            </table>
         </div>
+    </div>
+
 
 <!-- Footer -->
 <footer id="footer">
