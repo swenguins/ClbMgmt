@@ -45,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           SizedBox(
             width: 200.0,
             child: Text(
-              'Welcome,\n' + loggedInUser.email,
+              'Welcome,\n',
               style: TextStyle(
                         fontSize: 40.0,
                         fontWeight: FontWeight.w900,
