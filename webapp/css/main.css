@@ -264,7 +264,7 @@ body {
 #choose-event-pic {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: baseline;
 }
 
@@ -350,7 +350,8 @@ body {
 #club-pic {
     position: inherit;
     margin: 10px auto;
-    width: 50%;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
 }
 
@@ -376,4 +377,17 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+#edit-club-info-button {
+    border-radius: 10px;
+    height: 5vh;
+    border: 2px solid black;
+    background-color: #3c61d4;
+    cursor: pointer;
+}
+
+#event_img_preview {
+    height: 200px;
+    width: 200px;
 }

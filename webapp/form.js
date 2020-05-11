@@ -39,6 +39,8 @@ window.addEventListener("load", function () {
     addCheckInListeners();
     club_event_table();
     getUserProfilePic();
+    getClubInfo();
+    getClubProfilePic();
     console.log(localStorage['current_club'])
     if (window.location.href.includes("CreateEvent.html") || window.location.href.includes("ManageClub.html")){
         console.log(localStorage['current_club']);
@@ -108,18 +110,27 @@ function createEvent() {
     let end_time = document.getElementById("meeting-end-time");
     let max_attendees = document.getElementById("max-attendance");
     let expected_attendees = document.getElementById("expected-attendance");
-    eventsCollection.add({
-        event_name: eventName.value,
-        description: description.value,
-        date: date.value,
-        start_time: start_time.value,
-        end_time: end_time.value,
-        max_attendees: max_attendees.value,
-        expected_attendees: expected_attendees
-    }).then(user => {
-        window.location.href = 'ManageClub.html';
-    });
-
+    let event_number = 0;
+    clubsCollection.where("club_name", "==", localStorage['current_club']).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            doc.ref.collection("Events").get().then(function (querySnapshot) {
+                event_number = querySnapshot.size;
+            }).then(function () {
+                eventsCollection.add({
+                    event_name: eventName.value,
+                    description: description.value,
+                    date: date.value,
+                    start_time: start_time.value,
+                    end_time: end_time.value,
+                    max_attendees: max_attendees.value,
+                    expected_attendees: expected_attendees.value,
+                    event_number : event_number
+                }).then(user => {
+                    window.location.href = 'ManageClub.html';
+                });
+            })
+        });
+    })
 }
 
 function getClubByName(name) {
@@ -166,6 +177,13 @@ function addClickListeners(){
     if (sign_up_button){
         sign_up_button.addEventListener('click', function () {
             signUp();
+        })
+    }
+
+    let update_club_info_button = document.getElementById("edit-club-info-button");
+    if (update_club_info_button){
+        update_club_info_button.addEventListener('click',function () {
+            updateClubInfo();
         })
     }
 }
@@ -236,20 +254,41 @@ function addChangeListeners() {
     let upload_event_pic_button = document.getElementById("event_img");
     if (upload_event_pic_button){
         upload_event_pic_button.addEventListener("change", function(e){
-            console.log("here to upload pic")
-            let file = e.target.files[0];
-            let storageRef = firebase.storage().ref('event-image/'+"event1");
-            storageRef.put(file);
+            let preview = document.getElementById("event_img_preview");
+            let event_number = 0;
+            clubsCollection.where("club_name", "==", localStorage['current_club']).get().then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    doc.ref.collection("Events").get().then(function (querySnapshot) {
+                        event_number = querySnapshot.size;
+                        console.log(event_number)
+                    }).then(function () {
+                        let file = e.target.files[0];
+                        preview.src = URL.createObjectURL(file);
+                        let storageRef = firebase.storage().ref('event-image/'+localStorage['club_id']+'/'+String(event_number));
+                        storageRef.delete().then(function () {
+                            storageRef.put(file);
+                        }).catch(function(error) {
+                            storageRef.put(file);
+                        });
+                })
+                });
+            })
+
         })
     }
 
     let upload_club_pic_button = document.getElementById("club_img");
     if (upload_club_pic_button){
         upload_club_pic_button.addEventListener("change", function(e){
-            console.log("here to upload pic")
+            let preview = document.getElementById("club-pic");
             let file = e.target.files[0];
-            let storageRef = firebase.storage().ref('club-profile-image/'+"event1");
-            storageRef.put(file);
+            preview.src = URL.createObjectURL(file);
+            let storageRef = firebase.storage().ref('club-profile-image/'+localStorage['club_id']);
+            storageRef.delete().then(function () {
+                storageRef.put(file);
+            }).catch(function(error) {
+                storageRef.put(file);
+            });
         })
     }
 }
@@ -387,8 +426,11 @@ function displayMyClub(name, descrip)
     let row = table.insertRow(0);
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
     cell1.innerHTML = name;
     cell2.innerHTML = descrip;
+    cell3.innerHTML = "<a href='#'  class='manageButton'>Go To Club Page</a>";
+    addClickListeners();
 }
 
 function checkIntoEventByName(club_name, event_name,user) {
@@ -486,7 +528,7 @@ function populate_membership_table() { //and your joined clubs
 
                 cell1.innerHTML = name;
                 cell2.innerHTML = desc;
-                cell3.innerHTML =  "<a href='#'  class='manageButton'>Manage Membership</a>";
+                cell3.innerHTML =  "<a href='#'  class='manageButton'>Go To Club Page</a>";
                 addClickListeners();
             });
 
@@ -602,6 +644,61 @@ function getUserProfilePic(){
             if (user) {
                 console.log("here")
                 let storageRef = firebase.storage().ref().child("user-profile-image/"+user.uid);
+
+                storageRef.getDownloadURL().then(function(url) {
+                    console.log("here1")
+                    pic.src = url;
+                    console.log(url)
+                }).catch(function(error) {
+
+                });
+            } else {
+                // No user is signed in.
+            }
+        });
+
+    }
+}
+
+function getClubInfo() {
+    let club_name = document.getElementById("club-name-edit");
+    if (club_name){
+        club_name.setAttribute("value", localStorage['current_club']);
+        let club_desc = document.getElementById("club-description-edit");
+        clubsCollection.where("club_name", "==", localStorage['current_club']).get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                club_desc.setAttribute("value", doc.data().description);
+            });
+        })
+    }
+
+}
+
+function updateClubInfo() {
+    let club_name = document.getElementById("club-name-edit");
+    let club_desc = document.getElementById("club-description-edit");
+    clubsCollection.where("club_name", "==", localStorage['current_club']).get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            doc.ref.update({
+                club_name: club_name.value,
+                description:club_desc.value
+            }).then(function() {
+                console.log("Document successfully updated!");
+            }).catch(function(error) {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
+        });
+    })
+}
+
+function getClubProfilePic(){
+    let pic  = document.getElementById("club-pic");
+    if (pic){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                console.log("here")
+                let storageRef = firebase.storage().ref().child("club-profile-image/"+localStorage['club_id']);
 
                 storageRef.getDownloadURL().then(function(url) {
                     console.log("here1")
