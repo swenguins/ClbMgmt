@@ -28,6 +28,7 @@ auth.onAuthStateChanged(function(user){
     }
 });
 
+
 window.addEventListener("load", function () {
     addClickListeners();
     addInputListeners();
@@ -40,16 +41,9 @@ window.addEventListener("load", function () {
     club_event_table();
     getUserProfilePic();
     getClubInfo();
+    getUsername();
     getClubProfilePic();
-    console.log(localStorage['current_club'])
-    if (window.location.href.includes("CreateEvent.html") || window.location.href.includes("ManageClub.html")){
-        console.log(localStorage['current_club']);
-        getClubByName(localStorage['current_club']);
-        console.log(localStorage['club_id'])
-    }
-    else {
-        //localStorage['current_club'] = null;
-    }
+    getClubName();
 })
 
 //Function for creating an account
@@ -95,8 +89,19 @@ function createClub(){
     let ID = clubsCollection.add({
         club_name: clubName.value,
         description: description.value
-    }).then(user => {
-        window.location.href = 'ClubPage.html';
+    }).then(data => {
+        console.log("here")
+        clubsCollection.where("club_name", "==", clubName.value).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                console.log("heree")
+                console.log(doc.data())
+                doc.ref.collection("users").doc(user.uid).set({
+                    admin: true
+                })
+            })
+        })
+    }).then(data => {
+        //window.location.href = 'ClubPage.html';
     });
 }
 
@@ -133,12 +138,14 @@ function createEvent() {
     })
 }
 
-function getClubByName(name) {
-    clubsCollection.where("club_name", "==", name).get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
+async function getClubByName(name) {
+    await clubsCollection.where("club_name", "==", name).get().then(async function(querySnapshot) {
+        querySnapshot.forEach(await async function(doc) {
             localStorage['club_id'] = doc.id;
+            console.log("changed club_id")
         });
-    })
+    });
+    return Promise.resolve();
 }
 
 function addClickListeners(){
@@ -146,15 +153,23 @@ function addClickListeners(){
     if (clubs.length > 0){
         for (let i = 0 ; i < clubs.length ; i++){
             if (clubs[i].innerHTML == 'Manage'){
-                clubs[i].addEventListener("click", function(){
+                clubs[i].addEventListener("click", async function(){
+                    console.log(localStorage['club_id'])
                     localStorage['current_club'] = clubs[i].parentElement.parentElement.firstElementChild.innerHTML;
+                    await getClubByName(clubs[i].parentElement.parentElement.firstElementChild.innerHTML);
                     window.location.href = "ManageClub.html";
+                    console.log(localStorage['club_id'])
                 })
             }
             else{
-                clubs[i].addEventListener("click", function(){
+                clubs[i].addEventListener("click", async function(){
+                    console.log(localStorage['club_id'])
+                    console.log(localStorage['current_club'])
                     localStorage['current_club'] = clubs[i].parentElement.parentElement.firstElementChild.innerHTML;
+                    await getClubByName(clubs[i].parentElement.parentElement.firstElementChild.innerHTML);
+                    console.log(localStorage['club_id'])
                     window.location.href = "ClubRegistration.html";
+
                 })
             }
         }
@@ -192,16 +207,15 @@ function addJoinListeners(){
     let joinButtons = document.getElementsByClassName("joinButton");
     if (joinButtons.length > 0){
         for (let i = 0 ; i < joinButtons.length ; i++){
-            joinButtons[i].addEventListener("click", function(){
+            joinButtons[i].addEventListener("click", async function(){
                 let name = joinButtons[i].parentElement.parentElement.firstElementChild.innerHTML;
                 let desc = joinButtons[i].parentElement.previousElementSibling.innerHTML;
                 displayMyClub(name,desc);
-                getClubByName(name);
-                console.log(localStorage['club_id'])
+                await getClubByName(name);
                 const usersCollection = database.collection('clubs').doc(localStorage['club_id']).collection("users");
                 let user = firebase.auth().currentUser;
-                usersCollection.add({
-                    id : user.uid
+                usersCollection.doc(user.uid).set({
+                    admin: false
                 })
                 joinButtons[i].parentElement.parentElement.innerHTML = "";
             })
@@ -210,7 +224,6 @@ function addJoinListeners(){
 }
 
 function addInputListeners(){
-    console.log("here to add listener")
     let new_club_search = document.getElementById("club-search-name");
     if(new_club_search){
         new_club_search.addEventListener('input', function () {
@@ -502,11 +515,11 @@ function populate_owned_clubs_table() { //and your joined clubs
                 cell1.innerHTML = name;
                 cell2.innerHTML = desc;
                 cell3.innerHTML =  "<a href='#'  class='manageButton'>Manage</a>";
-                addClickListeners();
             });
 
 
         })
+        addClickListeners();
     }
 }
 
@@ -529,10 +542,9 @@ function populate_membership_table() { //and your joined clubs
                 cell1.innerHTML = name;
                 cell2.innerHTML = desc;
                 cell3.innerHTML =  "<a href='#'  class='manageButton'>Go To Club Page</a>";
-                addClickListeners();
             });
 
-
+            addClickListeners();
         })
     }
 }
@@ -642,13 +654,10 @@ function getUserProfilePic(){
     if (pic){
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                console.log("here")
                 let storageRef = firebase.storage().ref().child("user-profile-image/"+user.uid);
 
                 storageRef.getDownloadURL().then(function(url) {
-                    console.log("here1")
                     pic.src = url;
-                    console.log(url)
                 }).catch(function(error) {
 
                 });
@@ -697,7 +706,6 @@ function getClubProfilePic(){
     if (pic){
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                console.log("here")
                 let storageRef = firebase.storage().ref().child("club-profile-image/"+localStorage['club_id']);
 
                 storageRef.getDownloadURL().then(function(url) {
@@ -712,5 +720,32 @@ function getClubProfilePic(){
             }
         });
 
+    }
+}
+
+function getUsername(){
+    let username = document.getElementById("user-name");
+    if (username){
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                username.innerHTML = "Username";
+                document.getElementById("user-email").innerHTML = user.email;
+            } else {
+                // No user is signed in.
+            }
+        });
+    }
+}
+
+function getClubName(){
+    let club_name = document.getElementById("club-name");
+    if (club_name){
+        club_name.innerHTML = localStorage['current_club'];
+        let club_desc = document.getElementById("club-description");
+        clubsCollection.where("club_name", "==", localStorage['current_club']).get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                club_desc.innerHTML = doc.data().description;
+            });
+        })
     }
 }
