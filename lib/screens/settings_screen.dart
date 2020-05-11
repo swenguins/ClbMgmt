@@ -35,11 +35,52 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
   
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "You are at the settings screen!",
+ Widget build(BuildContext context) { //Content of the screen
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Settings",style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+
       ),
+      body: new Center(
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[ //Placeholder ListTiles ==== NON-FUNCTIONAL, JUST FOR SHOW FOR DEMO
+            new ListTile(
+              leading: const Icon(Icons.people, size: 24),
+              title: const Text('Account Settings',style: TextStyle(fontSize: 24.0)),
+            ),
+            new ListTile(
+              leading: const Icon(Icons.notifications, size: 24),
+              title: const Text('Notifications Settings',style: TextStyle(fontSize: 24.0)),
+            ),
+            new ListTile(
+              leading: const Icon(Icons.lock, size: 24),
+              title: const Text('Privacy Settings',style: TextStyle(fontSize: 24.0)),
+            ),
+            new ListTile(
+              leading: const Icon(Icons.security, size: 24),
+              title: const Text('Security Settings',style: TextStyle(fontSize: 24.0)),
+            ),
+            new ListTile(
+              leading: const Icon(Icons.info, size: 24),
+              title: const Text('About',style: TextStyle(fontSize: 24.0)),
+            ),
+
+            new Flexible(
+              child: Opacity(
+                opacity: 0.3,
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/igloo_logo.png'),
+                    ),
+                )
+              ),
+            )
+          ],
+          ),
+      )
     );
   }
 }
