@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <!--
-	Team Penguin: Noah Doyle 4/12/20
-				  Kevin Bullock
-This page is a test profile
+	Team Penguin
+This is the place for users to manage their Clubs (MAY NOT BE USED IT WOULD PROBABLY BE EASIER TO USE THE MANAGE SECTION ON THE PROFILE PAGE)
 -->
 <html lang="en">
 <head>
@@ -11,7 +10,7 @@ This page is a test profile
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="manifest" href="images/site.webmanifest">
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Membership</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -20,7 +19,6 @@ This page is a test profile
     <script src="js/skel.min.js"></script>
     <script src="js/skel-layers.min.js"></script>
     <script src="js/init.js"></script>
-
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
 
@@ -38,10 +36,9 @@ This page is a test profile
         <link rel="stylesheet" href="css/style-xlarge.css" />
     </noscript>
 </head>
-
+<body>
 
 <!-- Header -->
-
 <header id="header">
     <h1><a href="EventCheckIn.html">
         <img src="images/igloo_logo.png" alt="Italian Trulli" style="width:78px; height: 65px; margin-top: 2vh">
@@ -53,93 +50,30 @@ This page is a test profile
             <li><a href="EditAccount.html">Account</a></li>
             <li><a href="SignIn.html" class="button special" id="signout" onclick="signOut();window.location.href = 'signIn.html';">LogOut</a></li>
         </ul>
-
-
     </nav>
 </header>
-
-<!-- Main -->
-
-
-<div class="profile-welcome">
-    <img id="account-pic" src="images/profile_placeholder.gif" alt="" />
-
-    <h2 id ="welcome"> </h2>
-    <p>Events are listed below.</p>
-</div>
-<div class = "profile-eventlist">
-    <!-- Table -->
-    <h3>Current Events</h3>
-    <h4></h4>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-            <tr>
-                <th>Club Name</th>
-                <th>Event Name</th>
-                <th>Description</th>
-                <th>Event Date</th>
-                <th>Event Start Time</th>
-                <th>CheckIn</th>
-            </tr>
-            </thead>
-            <tbody id="current-event-table">
-
-
-            </tbody>
-        </table>
+<div id = "Club-Registration-Layout">
+    <div id ="club-info">
+        <img id = "club-pic" src="images/profile_placeholder.gif" alt="" />
+        <div id="club-info-text">
+            <div id="club-name">Club Name Will Go Here</div>
+            <div id="club-description">Club Description Will Go Here</div>
+        </div>
+        <button id = "leave-club"style="height: 5vh">Leave Club</button>
     </div>
+    <div id = "club-user-data">
+        <h3>Upcoming Events</h3>
+        <div id = "upcoming-events" class="upcoming-events">
 
-    <!-- This table should get populated with all of the users owned clubs, it currently has placeholder data-->
-    <h3>Upcoming Events</h3>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-            <tr>
-                <th>Club Name</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Event Date</th>
-                <th>Event Start Time</th>
-
-            </tr>
-            </thead>
-            <tbody id="upcoming-event-body">
-
-
-            </tbody>
-        </table>
-
-        <h3>Search For Events</h3>
-        <div class="table-wrapper">
-            <tr style = "margin-bottom: 10px; ">
-                <td>
-                    <label for="event-search-name"></label>
-                    <input type="text" name="Event Name" id="event-search-name" value="" placeholder="Event Name"/>
-                </td>
-            </tr>
-            <table>
-                <thead>
-                <tr>
-                    <th>Club Name</th>
-                    <th>Event Name</th>
-                    <th>Description</th>
-                    <th>Event Date</th>
-                    <th>Event Start Time</th>
-                </tr>
-                </thead>
-                <tbody id = "event-search-table">
-
-
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
+
 <footer id="footer">
     <ul class="copyright">
         <li>&copy;Igloo. All rights reserved.</li>
     </ul>
 </footer>
 
+</body>
 </html>
